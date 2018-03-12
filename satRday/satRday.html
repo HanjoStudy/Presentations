@@ -165,98 +165,13 @@ article li.build {
 </slide>
 <slide class="class" id="id" style="background:; background-size:;">
   <hgroup>
-    <h2>Significance of consumer confidence</h2>
-  </hgroup>
-  <article>
-    <p>For both the schools of thought, &#39;informational contagion&#39; or &#39;animal spirits&#39;, the consensus remains the same </p>
-
-<ul>
-<li>Consumer sentiment and economic activity have a strong correlation and it is thus useful to incorporate sentiment into any model that wishes to forecast the future state of the economy. </li>
-<li>The <em>why</em> behind the interaction is still under debate and remains open for discussion.</li>
-</ul>
-
-<p>Our main hypothesis sides with informational contagion. The media is a highly important input when trying to understand how economic agents form their expectation about the future and thereby shape economic outcomes</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Current literature on the topic</h2>
-  </hgroup>
-  <article>
-    <ul>
-<li><p>P. J. Daas and Puts (2014) </p>
-
-<ul>
-<li>Their approach considered the construction of a Dutch social media sentiment index (SMI) derived from Facebook, Twitter and various other online data sources. The finding of the paper concluded that a strong association exists between consumer confidence and the sentiment displayed by public Facebook messages.</li>
-</ul></li>
-<li><p>Brakel et al. (2017) </p>
-
-<ul>
-<li>Investigates the Dutch SMI by using a multivariate structural time series approach to estimate whether the inclusion of social media in the production of Dutch administrative statistics improve their accuracy</li>
-</ul></li>
-<li><p>Fraiberger (2016) </p>
-
-<ul>
-<li>Construct a sentiment index from the full corpus of economic news articles, produced by Reuters, across 12 countries over a 25 year period. The paper found that the constructed index not only tracked GDP at a country level, but contained information on future GDP growth which was not captured by consensus forecasts</li>
-</ul></li>
-</ul>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="segue" id="slide-7" style="background:url(https://media.giphy.com/media/lXiRLb0xFzmreM8k8/giphy.gif); background-size:;">
-  <hgroup>
-    <h1>Data</h1>
-  </hgroup>
-  <article>
-      
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Data Sources</h2>
-  </hgroup>
-  <article>
-    <p>To construct an economic news sentiment index, we collected data from three different sources:</p>
-
-<ul>
-<li>Meltwater </li>
-<li>Sabinet </li>
-<li>News24</li>
-</ul>
-
-<p>The analysis restricts itself to the period February 2009 to October 2017 as all data-sets have information for this time frame</p>
-
-<p>In total we analysed around 700k articles for this project</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
     <h2>Some data examples (Cont.)</h2>
   </hgroup>
   <article>
-    <p><img src="assets/img/news_example.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="65%" style="display: block; margin: auto;" /></p>
+    <pre><code class="r">knitr::include_graphics(&quot;assets/img/news_example.png&quot;)
+</code></pre>
+
+<p><img src="assets/img/news_example.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="65%" /></p>
   
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
@@ -265,7 +180,7 @@ article li.build {
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-10" style="background:; background-size:;">
+<slide class="segue" id="slide-6" style="background:; background-size:;">
   <hgroup>
     <h1>Construction of current confidence measures</h1>
   </hgroup>
@@ -295,7 +210,6 @@ article li.build {
 <ul>
 <li>The history of the index dates back to 1975 when the index solely consisted out of the white population group, with black and other racial groups being included in the survey in 1982 and 1994 respectively (Kershoff, 2000).</li>
 <li>Survey result is the outcome of an area-stratified probability sample of 2500 households across South Africa</li>
-<li>Coverage of 92% of the urban adult population and 53% of the total adult population</li>
 </ul>
   
     <footer class = 'logo'>
@@ -327,17 +241,12 @@ article li.build {
     </footer>
   </article>
 </slide>
-<slide class="class" id="id" style="background:; background-size:;">
+<slide class="segue" id="slide-9" style="background:; background-size:;">
   <hgroup>
-    <h2>Business Confidence index construction</h2>
+    <h1>So what does R have to do with all of this?</h1>
   </hgroup>
   <article>
-    <p>The BER also conducts research on business confidence (BCI) in South Africa. Over the years, the BER has isolated one question that it uses to construct its composite business confidence index:  </p>
-
-<ol>
-<li><em>Do you find prevailing business conditions satisfactory or unsatisfactory?</em></li>
-</ol>
-  
+      
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
    			 <img src = "assets/img/logo.png" height="80" width="80">
@@ -345,7 +254,7 @@ article li.build {
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-14" style="background:url(https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif); background-size:;">
+<slide class="segue" id="slide-10" style="background:url(https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif); background-size:;">
   <hgroup>
     <h1>Introducing text methods to construct sentiment indexes</h1>
   </hgroup>
@@ -384,25 +293,25 @@ article li.build {
     </footer>
   </article>
 </slide>
-<slide class="" id="slide-16" style="background:; background-size:;">
+<slide class="" id="slide-12" style="background:; background-size:;">
   <hgroup>
     <h2>Sentiment through textual analysis (Cont.)</h2>
   </hgroup>
   <article>
     <p>A dictionary &quot;bag-of-words&quot; approach to sentiment mining is widely used. Our bag-of-words framework was adjusted from <code>tidytext::get_sentiment()</code> as we felt it restrictive. We followed a more functional approach</p>
 
-<pre><code>## function(lexicon = c(&quot;afinn&quot;, &quot;bing&quot;, 
-##                      &quot;nrc&quot;, &quot;loughran&quot;, 
-##                      &quot;loughran_mcdonald&quot;, &quot;henry&quot;, 
-##                      &quot;harvard_four&quot;, &quot;qdap_pol&quot;)) {
-## 
-##   data(list = &quot;news_dict&quot;,
-##        package = &quot;NewsR&quot;,
-##        envir = environment())
-## 
-## 
-##   news_dict[[lexicon]]
-## }
+<pre><code class="r">function(lexicon = c(&quot;afinn&quot;, &quot;bing&quot;, 
+                     &quot;nrc&quot;, &quot;loughran&quot;, 
+                     &quot;loughran_mcdonald&quot;, &quot;henry&quot;, 
+                     &quot;harvard_four&quot;, &quot;qdap_pol&quot;)) {
+
+  data(list = &quot;news_dict&quot;,
+       package = &quot;NewsR&quot;,
+       envir = environment())
+
+
+  news_dict[[lexicon]]
+}
 </code></pre>
 
 <div style='float:left;width:48%;' class='centered'>
@@ -423,29 +332,12 @@ article li.build {
     <h2>Sentiment through textual analysis (Cont.)</h2>
   </hgroup>
   <article>
-    <p>Output from <code>NewsR::get_setiments</code></p>
+    <p>Output from <code>NewsR::get_sentiments</code></p>
 
-<p><img src="assets/img/get_sentiment.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="100%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Sentiment through textual analysis (Cont.)</h2>
-  </hgroup>
-  <article>
-    <p>We start off by denoting the total articles for a given data-set to be \(N^a_i\) where \(i \in \{Sources\}\) , while the total period over which the analysis will be conducted will be represented by \(T^d\) = {2009-02-01:2017-09-31}</p>
+<pre><code class="r">knitr::include_graphics(&quot;assets/img/get_sentiment.png&quot;)
+</code></pre>
 
-<ul>
-<li>Purge all stopwords - <em>the</em>, <em>and</em>, <em>a</em> and so forth</li>
-<li>Remove all editorial pieces with less than 150 words after stopword removal</li>
-<li>Did not stem words due to dictionaries</li>
-</ul>
+<p><img src="assets/img/get_sentiment.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="100%" /></p>
   
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
@@ -461,11 +353,11 @@ article li.build {
   <article>
     <p>To conduct all the cleaning steps, we created two custom functions: </p>
 
-<ul>
-<li><code>analyse_article(pdf_file) %&gt;% article_to_text(., lexicon = &quot;all&quot;, plot = T)</code></li>
-</ul>
+<pre><code class="r">x &lt;- article_to_text(pdf_file) %&gt;% 
+  analyse_article(., lexicon = &quot;all&quot;, plot = T)
+</code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /></p>
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
   
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
@@ -481,245 +373,10 @@ article li.build {
   <article>
     <p>Output from <code>NewsR::analyse_article</code></p>
 
-<p><img src="assets/img/analyse_art.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="85%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Sentiment through textual analysis (Cont.)</h2>
-  </hgroup>
-  <article>
-    <p>Doing a simple word count that consists out of the positive and negative words. Using these statistics, we normalise the count so that they reflect the relative fraction of positive and negative words within an article:</p>
+<pre><code class="r">knitr::include_graphics(&quot;assets/img/analyse_art.png&quot;)
+</code></pre>
 
-<p>\[
-Pos_{i, t, n^a} = \frac{PositiveWords}{PositiveWords + NegativeWords} \\
-Neg_{i, t, n^a} = \frac{NegativeWords}{PositiveWords + NegativeWords}
-\]</p>
-
-<p>The polarity of the article is derived from the score. </p>
-
-<p>\[
-S_{i, t, n^a} = Pos_{i, t, n^a} - Neg_{i, t, n^a}\\
-\]
-If the score of the article is greater than zero, then the overall sentiment for the article is deemed to be positive, the same can be said for a negative sentiment score.</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Sentiment through textual analysis (Cont.)</h2>
-  </hgroup>
-  <article>
-    <p>The index is constructed as the net balance of positive and negative articles within a month. This method of constructing an index should be familiar, as it is the same method the University of Michigan uses to construct their well known consumer confidence index</p>
-
-<p>\[
-\mathcal{I}_{t} = \frac{PositiveArticles - NegativeArticles}{PositiveArticles + NegativeArticles} 
-\]</p>
-
-<ul>
-<li>Using the same method, we create six different indexes for each of our raw text data-sets with the aim to control for the implications of different external dictionaries</li>
-<li>The final total of indexes under evaluation amounts to 45 excluding the reference indexes</li>
-<li>All indexes are finally smoothed using a Kalman Filter</li>
-</ul>
-
-<p><font color="red">But how do we analyse this large amount of data?!</font></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="segue" id="slide-23" style="background:url(https://cdn.dribbble.com/users/31818/screenshots/1891002/math.gif); background-size:cover;">
-  <hgroup>
-    <h1>Analysis</h1>
-  </hgroup>
-  <article>
-      
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Comparison between Online Sentiment Index and CCI</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Comparison between Online Sentiment Index and BCI</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/fig/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>How we identify candidate series</h2>
-  </hgroup>
-  <article>
-    <p>The analysis section of the paper aims to identify the best confidence candidates that mimic&#39;s the BER&#39;s indicators from the plethora of indexes created in the previous section. </p>
-
-<ul>
-<li>To accomplish this, we turn to the field of time series clustering methods. The aim is to sub-divide the large sample set, through clustering, into smaller homogeneous buckets to identify which of the indexes created resemble the lowest dissimilarity with the BER&#39;s consumer confidence index as well as the business confidence index</li>
-<li>Time series clustering is an active research area with applications of the techniques being seen in literature encompassing a wide range of fields. Although the technique is gaining traction within other fields, the technique is still under utilised within the field of economics</li>
-<li>The steps in applying the analysis is two-fold
-
-<ul>
-<li>Identify an appropriate dissimilarity matrix between the indexes created, the CCI and the BCI</li>
-<li>Use hierarchical clustering to construct clusters which consists out of all the indexes</li>
-</ul></li>
-</ul>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Choice of dissimilarity measure</h2>
-  </hgroup>
-  <article>
-    <p>Decide to use a non-model based dissimilarity measure, called <strong>Dynamic Time Warping</strong>. Dynamic time warping allows for the recognition of similar shapes between time series, even in the presence of signal transformation such as shifting or scaling. A toy example of how dynamic time warping creates a mapping between time series can be seen here:</p>
-
-<p><img src="assets/img/dtw_example.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="30%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Dissimilarity matrix result</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/fig/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /></p>
-
-<p><font size="3">Thanks <a href="http://www.exegetic.biz/blog/2017/04/clustering-time-series-data/">Andrew</a>!</font></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Clustering</h2>
-  </hgroup>
-  <article>
-    <p>Hierarchical clustering has two paradigms when approaching the clustering problem, agglomerative and divise. To conduct the clustering we use a commonly know hierarchical clustering method from @R_prog, <code>hclust</code> which is an agglomerative algorithm.</p>
-
-<ul>
-<li>The algorithm starts by assigning each observation to its own cluster</li>
-<li>Next it computes the similarity between each of the clusters and joining those who are most similar</li>
-</ul>
-
-<p>This procedure is repeated until a final cluster is formed in a tree-like fashion. </p>
-
-<ul>
-<li>Height of the tree at each node is proportional to the value of the inter-group dissimilarity between its daughter nodes</li>
-</ul>
-
-<p>This structure is more commonly known as a <em>dendogram</em></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Clustering: Linkage criteria</h2>
-  </hgroup>
-  <article>
-    <p>A linkage criterion is needed to act as a function of the pairwise distances of observations in the dissimilarity matrix provided. </p>
-
-<ul>
-<li>We used <code>Ward</code>&#39;s distance. </li>
-<li>It can be thought of as an Anova test as clusters merge. Thus optimising within and between cluster variance</li>
-</ul>
-
-<p>Let \(A=\{a_1,\ldots, a_{n_a}\}\) and \(B=\{b_1,\ldots, b_{n_b}\}\) consist out of observations in \(\mathbb{R}^d\). Define the between-within, or \(e\)-distance \(e(A,B)\), between \(A\) and \(B\) as:</p>
-
-<p>\[
-e(A, B) = \frac{n_An_B}{n_A+n_B}\bigg(\frac{2}{n_An_B}\sum_{i=1}^{n_A} \sum_{j=1}^{n_B} d(a_i,b_j)  \\
-          - \frac{1}{n_A^2}\sum_{i=1}^{n_1}\sum_{j=1}^{n_A}d(a_i,a_j) - 
-                                      \frac{1}{n_B^2}\sum_{i=1}^{n_B}\sum_{j=1}^{n_B}d(b_i,b_j)\bigg).
-\]</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Clustering: results</h2>
-  </hgroup>
-  <article>
-    <p>The graph visualises a separation between two of the clusters and the other four. The series which forms part of the most left-hand side cluster all have one thing in common, an increasing overall trend, or an increasing trend over the period of 2017:</p>
-
-<p><img src="assets/fig/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="segue" id="slide-32" style="background:url(https://media.giphy.com/media/KRpGtfuxQgCEo/giphy.gif); background-size:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <p><hgroup style="color:black; 
-  background-color:white;font-weight: 600;
-  font-size: 60px !important;
-  line-height: 45px !important;
-  letter-spacing: -2px !important;"> Constructing Online Sentiment Indexes</hgroup></p>
+<p><img src="assets/img/analyse_art.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="85%" /></p>
   
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
@@ -733,14 +390,12 @@ e(A, B) = \frac{n_An_B}{n_A+n_B}\bigg(\frac{2}{n_An_B}\sum_{i=1}^{n_A} \sum_{j=1
     <h2>Constructing Online Sentiment Indexes</h2>
   </hgroup>
   <article>
-    <p>We use the results from the clustering analysis to build a <strong>composite index</strong> for consumer and business confidence. </p>
+    <p>We use all of these techniques, along with Time Series Cluster methods to construct sentiment indexes</p>
 
-<ul>
-<li>Using the first component of PCA as the sentiment index</li>
-<li>We also construct a secondary <strong>composite index</strong> as the top 5 indexes closest to the reference index as per the DTW metric</li>
-</ul>
+<pre><code class="r">plot(plots[[&quot;CCI&quot;]])
+</code></pre>
 
-<p>Principle component can be seen as using a set of possibly correlated observations, \(\mathcal{X}\in\{x_1, \ldots, x_N\}\), in an orthogonal transformation to convert them into a set of values of linearly uncorrelated variables called principal components. The first component of the analysis is considered to be the constructed sentiment index</p>
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
   
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
@@ -749,82 +404,33 @@ e(A, B) = \frac{n_An_B}{n_A+n_B}\bigg(\frac{2}{n_An_B}\sum_{i=1}^{n_A} \sum_{j=1
     </footer>
   </article>
 </slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Principle component results: Consumer</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/img/pca_consumer.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="60%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Principle component results: Consumer (Cont)</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/fig/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Principle component results: Business</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/img/pca_business.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="45%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Principle component results: Business (Cont)</h2>
-  </hgroup>
-  <article>
-    <p><img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
+<slide class="" id="slide-17" style="background:; background-size:;">
   <hgroup>
     <h2>Conclude</h2>
   </hgroup>
   <article>
-    <p>Introduced a framework that future research can build on. Motivates for the use of large text data as an alternative source to construct economic indicators:</p>
+    <p>Introduced a framework that future research can build on. Motivates for the use of large text data as an alternative source to construct economic indicators. To keep an eye on these developments and more</p>
 
 <ul>
-<li>Developed monthly indexes that measure economic sentiment</li>
-<li>Unlike previous research papers, our underlying data is not derived from a single source, but consists out of various different corpora and dictionaries</li>
-<li><p>Time series clustering techniques can aid in evaluating a large number of indexes at once</p></li>
-<li><p><code>NewsR</code> - which is an internal package developed internally at the BER to handle a lot of the heavy lifting. </p>
+<li><p><a href="https://www.daeconomist.com">daeconomist.com</a></p></li>
+<li><p><code>NewsR</code> - which is an internal package developed internally at the BER to handle a lot of the heavy lifting. </p></li>
+</ul>
 
-<ul>
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
 <li><code>article_to_text()</code></li>
 <li><code>analyse_article()</code></li>
 <li><code>kalman_smooth()</code></li>
-</ul></li>
 </ul>
-  
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li><code>par_unnest()</code></li>
+<li><code>tidy_prepDocuments()</code></li>
+</ul>
+
+</div>  
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
    			 <img src = "assets/img/logo.png" height="80" width="80">
@@ -832,39 +438,14 @@ e(A, B) = \frac{n_An_B}{n_A+n_B}\bigg(\frac{2}{n_An_B}\sum_{i=1}^{n_A} \sum_{j=1
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-39" style="background:url(https://media1.giphy.com/media/w4yQRrkhMWwF2/giphy.gif); background-size:cover;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-      
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="quote segue nobackground dark" id="slide-40" style="background:; background-size:;">
+<slide class="quote segue nobackground dark" id="slide-18" style="background:; background-size:;">
   <hgroup>
     
   </hgroup>
   <article>
     <p><q><span class = 'red'>Questions?</span></q></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="80" width="80">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="" id="slide-41" style="background:; background-size:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <!-- --- &twocol -->
+
+<!-- --- &twocol -->
 
 <!-- ### Two column example -->
 
@@ -929,224 +510,86 @@ e(A, B) = \frac{n_An_B}{n_A+n_B}\bigg(\frac{2}{n_An_B}\sum_{i=1}^{n_A} \sum_{j=1
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Significance of consumer confidence'>
+        data-slide=5 title='Some data examples (Cont.)'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Current literature on the topic'>
+        data-slide=6 title='Construction of current confidence measures'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Data'>
+        data-slide=7 title='BER Confidence indexes'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Data Sources'>
+        data-slide=8 title='Consumer Confidence index construction'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Some data examples (Cont.)'>
+        data-slide=9 title='So what does R have to do with all of this?'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Construction of current confidence measures'>
+        data-slide=10 title='Introducing text methods to construct sentiment indexes'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='BER Confidence indexes'>
+        data-slide=11 title='Sentiment through textual analysis'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Consumer Confidence index construction'>
+        data-slide=12 title='Sentiment through textual analysis (Cont.)'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Business Confidence index construction'>
+        data-slide=13 title='Sentiment through textual analysis (Cont.)'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Introducing text methods to construct sentiment indexes'>
+        data-slide=14 title='Sentiment through textual analysis (Cont.)'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Sentiment through textual analysis'>
+        data-slide=15 title='Sentiment through textual analysis (Cont.)'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Sentiment through textual analysis (Cont.)'>
+        data-slide=16 title='Constructing Online Sentiment Indexes'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Sentiment through textual analysis (Cont.)'>
+        data-slide=17 title='Conclude'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Sentiment through textual analysis (Cont.)'>
+        data-slide=18 title='NA'>
          18
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Sentiment through textual analysis (Cont.)'>
-         19
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Sentiment through textual analysis (Cont.)'>
-         20
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Sentiment through textual analysis (Cont.)'>
-         21
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Sentiment through textual analysis (Cont.)'>
-         22
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Analysis'>
-         23
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Comparison between Online Sentiment Index and CCI'>
-         24
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Comparison between Online Sentiment Index and BCI'>
-         25
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='How we identify candidate series'>
-         26
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Choice of dissimilarity measure'>
-         27
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Dissimilarity matrix result'>
-         28
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Clustering'>
-         29
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Clustering: Linkage criteria'>
-         30
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='Clustering: results'>
-         31
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='NA'>
-         32
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Constructing Online Sentiment Indexes'>
-         33
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Principle component results: Consumer'>
-         34
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Principle component results: Consumer (Cont)'>
-         35
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Principle component results: Business'>
-         36
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Principle component results: Business (Cont)'>
-         37
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Conclude'>
-         38
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='NA'>
-         39
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='NA'>
-         40
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='NA'>
-         41
       </a>
     </li>
   </ul>
