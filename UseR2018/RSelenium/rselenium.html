@@ -480,8 +480,6 @@ remDr$executeScript(&quot;arguments[0].scrollIntoView(true);&quot;, args = list(
 <li>Those that returns information we want to push into <code>rvest</code></li>
 </ul>
 
-<p>For the 1st case, we would want to return the driver object as the state of it has changed</p>
-
 <pre><code class="r">navi &lt;- function(remDr, site = &quot;https://www.google.com&quot;){
   remDr$navigate(site)
 }
@@ -508,9 +506,7 @@ remDr %&gt;% navi(., &quot;https://www.google.com&quot;)
 <li>Those that returns information we want to push into <code>rvest</code></li>
 </ul>
 
-<p>For the 2nd case, we would want to return the ELEMENT object as the state of it has changed</p>
-
-<pre><code class="r">take_pic &lt;- function(remDr, site = &quot;https://www.google.com&quot;){
+<pre><code class="r">take_pic &lt;- function(remDr){
   remDr$maxWindowSize()
   remDr$getTitle()
   remDr$screenshot(display = TRUE)
