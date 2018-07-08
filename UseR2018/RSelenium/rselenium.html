@@ -246,6 +246,24 @@ library(tidyverse)
     <h2>Turning the iginition (docker style)</h2>
   </hgroup>
   <article>
+    <p>If you don&#39;t want docker to run as <code>root</code> (you dont), then once docker has been installed, create a group and add the docker user to it:</p>
+
+<pre><code class="bash">sudo groupadd docker
+sudo usermod -aG docker $USER
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Turning the iginition (docker style)</h2>
+  </hgroup>
+  <article>
     <p>Pulling an image</p>
 
 <pre><code class="bash">sudo docker pull selenium/standalone-chrome-debug
@@ -273,7 +291,7 @@ sudo docker ps
     </footer>
   </article>
 </slide>
-<slide class="" id="slide-9" style="background:; background-size:;">
+<slide class="" id="slide-10" style="background:; background-size:;">
   <hgroup>
     <h2>Attach your viewport (TightVNC &amp; Vinagre)</h2>
   </hgroup>
@@ -281,11 +299,11 @@ sudo docker ps
     <p>We can use Virtual Network Computing (VNC) viewers to view what is happening</p>
 
 <div style='float:left;width:48%;' class='centered'>
-  <p><img src="assets/img/docker/TightVNC.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+  <p><img src="assets/img/docker/TightVNC.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="assets/img/docker/VinagreVNC.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
+  <p><img src="assets/img/docker/VinagreVNC.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
 
 </div>  
     <footer class = 'logo'>
@@ -295,7 +313,7 @@ sudo docker ps
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-10" style="background:url(https://media.giphy.com/media/o6p5ZioiD5x60/giphy.gif);background-size:cover; background-size:;">
+<slide class="segue" id="slide-11" style="background:url(https://media.giphy.com/media/o6p5ZioiD5x60/giphy.gif);background-size:cover; background-size:;">
   <hgroup>
     
   </hgroup>
@@ -508,17 +526,17 @@ remDr %&gt;% take_pic(.)
     </footer>
   </article>
 </slide>
-<slide class="" id="slide-19">
+<slide class="" id="slide-20">
 <hgroup>
   
 </hgroup>
 <article class = 'flexbox vcenter'>
-<p><img src="assets/img/overview.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" /></p>
+<p><img src="assets/img/overview.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" /></p>
 
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="segue" id="slide-20" style="background:url(https://media.giphy.com/media/vlz7bLooGfrc4/giphy.gif);background-size:cover; background-size:;">
+<slide class="segue" id="slide-21" style="background:url(https://media.giphy.com/media/vlz7bLooGfrc4/giphy.gif);background-size:cover; background-size:;">
   <hgroup>
     <h2>A Tour of the winelands!</h2>
   </hgroup>
@@ -531,7 +549,7 @@ remDr %&gt;% take_pic(.)
     <h2>Extending your wine knowledge</h2>
   </hgroup>
   <article>
-    <p>South Africa is famous for its wines! Lets find out a little bit more about the wine region </p>
+    <p>Australia is famous for its wines! Lets find out a little bit more about the wine region </p>
 
 <ul class = "build incremental">
 <li>Go to vivino.com</li>
@@ -547,12 +565,12 @@ remDr %&gt;% take_pic(.)
     </footer>
   </article>
 </slide>
-<slide class="" id="slide-22">
+<slide class="" id="slide-23">
 <hgroup>
   
 </hgroup>
 <article class = 'flexbox vcenter'>
-<p><img src="assets/img/thought.jpg" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" /></p>
+<p><img src="assets/img/thought.jpg" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" /></p>
 
 </article>
 <!-- Presenter Notes -->
@@ -569,7 +587,7 @@ remDr &lt;- remoteDriver(remoteServerAddr = &quot;192.168.99.100&quot;,
                       port = 4445L, 
                       browser = &quot;chrome&quot;)
 remDr$open()
-remDr$navigate(&quot;https://www.vivino.com/&quot;)
+remDr$navigate(&quot;https://www.vivino.com/explore&quot;)
 
 # Find, highlight and click element to proceed to vivino explore wines
 webElem &lt;- remDr$findElement(&quot;css&quot;, &#39;.explore-widget__main__submit__button&#39;)
@@ -600,7 +618,7 @@ scrollTo &lt;- function(remDr, webElem){
 scrollTo(remDr, webElem[[2]])
 
 webElem[[2]]$clickElement()
-webElem[[2]]$sendKeysToActiveElement(list(&quot;South Africa&quot;))
+webElem[[2]]$sendKeysToActiveElement(list(&quot;Australia&quot;))
 
 webElem &lt;- remDr$findElements(&quot;css&quot;, &#39;.pill__inner--7gfKn&#39;)
 
@@ -650,10 +668,10 @@ remDr$executeScript(&quot;return window.scrollY&quot;, args = list(1))
   read_html()
 
 collect_info &lt;- function(pg){
-  farm &lt;- pg %&gt;% html_nodes(&quot;a.anchor__anchor--3lfA6.vintageTitle__winery--2YoIr&quot;) %&gt;% 
+  farm &lt;- pg %&gt;% html_nodes(&quot;.vintageTitle__winery--2YoIr&quot;) %&gt;% 
     html_text()
 
-  wine &lt;- pg %&gt;% html_nodes(&quot;a.anchor__anchor--3lfA6.vintageTitle__wine--U7t9G&quot;) %&gt;% 
+  wine &lt;- pg %&gt;% html_nodes(&quot;.vintageTitle__wine--U7t9G&quot;) %&gt;% 
     html_text()
 
   rating &lt;- pg %&gt;% html_nodes(&quot;span.vivinoRating__rating--4Oti3&quot;) %&gt;% 
@@ -732,37 +750,37 @@ collect_info(pg)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Attach your viewport (TightVNC &amp; Vinagre)'>
+        data-slide=9 title='Turning the iginition (docker style)'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='NA'>
+        data-slide=10 title='Attach your viewport (TightVNC &amp; Vinagre)'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Finally - RSelenium is operational'>
+        data-slide=11 title='NA'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Open and navigate'>
+        data-slide=12 title='Finally - RSelenium is operational'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Using keys and Scrolling'>
+        data-slide=13 title='Open and navigate'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Interacting with the DOM'>
+        data-slide=14 title='Using keys and Scrolling'>
          14
       </a>
     </li>
@@ -774,13 +792,13 @@ collect_info(pg)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Nice to have functions'>
+        data-slide=16 title='Interacting with the DOM'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Building a RSelenium pipe function'>
+        data-slide=17 title='Nice to have functions'>
          17
       </a>
     </li>
@@ -792,50 +810,56 @@ collect_info(pg)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='NA'>
+        data-slide=19 title='Building a RSelenium pipe function'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='A Tour of the winelands!'>
+        data-slide=20 title='NA'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Extending your wine knowledge'>
+        data-slide=21 title='A Tour of the winelands!'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='NA'>
+        data-slide=22 title='Extending your wine knowledge'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Display all the wine'>
+        data-slide=23 title='NA'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Lets filter all wine from Australia'>
+        data-slide=24 title='Display all the wine'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Next we go to end and to &#39;load more&#39; wines'>
+        data-slide=25 title='Lets filter all wine from Australia'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Now we done with RSelenium, on to rvest!'>
+        data-slide=26 title='Next we go to end and to &#39;load more&#39; wines'>
          26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Now we done with RSelenium, on to rvest!'>
+         27
       </a>
     </li>
   </ul>
