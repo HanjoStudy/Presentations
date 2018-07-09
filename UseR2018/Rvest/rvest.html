@@ -675,68 +675,11 @@ rugby_tables %&gt;%
   html_nodes(., xpath = &#39;//*[(@id = &quot;toc&quot;)]&#39;) %&gt;% 
   html_text %&gt;% 
   cat
-</code></pre>
 
-<pre><code>## Contents
-## 1 Format
-## 1.1 Qualification
-## 1.2 Tournament
-## 
-## 2 History
-## 3 Trophy
-## 4 Selection of hosts
-## 5 Tournament growth
-## 5.1 Media coverage
-## 5.2 Attendance
-## 5.3 Revenue
-## 
-## 6 Results
-## 6.1 Tournaments
-## 6.2 Performance of nations
-## 6.3 Team records
-## 
-## 7 Records and statistics
-## 8 See also
-## 9 References
-## 9.1 Printed sources
-## 9.2 Notes
-## 9.3 Citations
-## 
-## 10 External links
-</code></pre>
-
-<pre><code class="r">rugby %&gt;% 
+rugby %&gt;% 
   html_nodes(., &#39;div#toc.toc&#39;) %&gt;% 
   html_text %&gt;% 
   cat
-</code></pre>
-
-<pre><code>## Contents
-## 1 Format
-## 1.1 Qualification
-## 1.2 Tournament
-## 
-## 2 History
-## 3 Trophy
-## 4 Selection of hosts
-## 5 Tournament growth
-## 5.1 Media coverage
-## 5.2 Attendance
-## 5.3 Revenue
-## 
-## 6 Results
-## 6.1 Tournaments
-## 6.2 Performance of nations
-## 6.3 Team records
-## 
-## 7 Records and statistics
-## 8 See also
-## 9 References
-## 9.1 Printed sources
-## 9.2 Notes
-## 9.3 Citations
-## 
-## 10 External links
 </code></pre>
   
     <footer class = 'logo'>
@@ -948,12 +891,286 @@ rugby_form
     </footer>
   </article>
 </slide>
+<slide class="segue" id="slide-36" style="background:; background-size:;">
+  <hgroup>
+    <h1>Case Study: Investing drugs test</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
 <slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Breaking down the URL</h2>
+  </hgroup>
+  <article>
+    <p><a href="https://www.ecstasydata.org/index.php?sort=DatePublishedU+desc&amp;start=0&amp;search_field=-&amp;m1=-1&amp;m2=-1&amp;datefield=tested&amp;max=200&amp;field_test=1">https://www.ecstasydata.org/index.php?sort=DatePublishedU+desc&amp;start=0&amp;search_field=-&amp;m1=-1&amp;m2=-1&amp;datefield=tested&amp;max=200&amp;field_test=1</a></p>
+
+<ul class = "build incremental">
+<li>&#39;?&#39; - breaks the up the API and parameters follow</li>
+<li>&#39;&amp;&#39; - breaks up parameters</li>
+<li>&#39;start=&#39; - this will be the incremental control of the pages</li>
+<li>&#39;max=&#39; - amount of observations returned</li>
+</ul>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Lets get started</h2>
+  </hgroup>
+  <article>
+    <p>Read the webpage into R</p>
+
+<pre><code class="r">pg &lt;- read_html(&quot;https://www.ecstasydata.org/index.php?sort=DatePublishedU+desc&amp;start=0&amp;max=200&quot;)
+
+pg
+</code></pre>
+
+<pre><code>## {xml_document}
+## &lt;html&gt;
+## [1] &lt;head&gt;\n&lt;title&gt;EcstasyData.org: Lab Test Results for Ecstasy/Molly a ...
+## [2] &lt;body id=&quot;Home&quot; class=&quot;TestResults&quot;&gt;\n&lt;div id=&quot;pre-content-top&quot; styl ...
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-39" style="background:url(assets/img/site_html.png);background-size:cover; background-size:;">
   <hgroup>
     
   </hgroup>
   <article>
-      
+    
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Extract table</h2>
+  </hgroup>
+  <article>
+    <p>We will use <code>rvest::html_table</code> to extract table</p>
+
+<pre><code class="r">pg_table &lt;- pg %&gt;% 
+  html_table(fill = T) %&gt;% 
+  .[[2]]
+
+names(pg_table) %&gt;% head
+</code></pre>
+
+<pre><code>## [1] &quot;Sample Photo&quot;                                                                                                                                                                                      
+## [2] &quot;Sample NameSample Name is the street name that was submitted with the sample (or the common street-name for a table imprint or sample). The individual result view page provides more information.&quot;
+## [3] &quot;Active ContentsActive Contentsis a list of substances detected by the lab.&quot;                                                                                                                        
+## [4] &quot;Active ContentsActive Contentsis a list of substances detected by the lab.&quot;                                                                                                                        
+## [5] &quot;Date PublishedDate Published is in most cases within two weeks of the date that the tablet was received by the lab (MAPS and other non-Ecstasydata results not included).&quot;                         
+## [6] &quot;Date TestedDate Tested the approximate date when the sample was tested by the lab.&quot;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Extract table</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">pg_table &lt;- pg %&gt;% 
+  html_table(fill = T) %&gt;% 
+  .[[2]]
+
+name_table &lt;- function(x){
+ names(x) &lt;- c(&quot;Photo&quot;, &quot;Name&quot;, &quot;Substance&quot;, &quot;Amounts&quot;, 
+               &quot;Date_published&quot;, &quot;Date_tested&quot;, &quot;Location&quot;, 
+               &quot;Sample_size&quot;, &quot;Data_source&quot;)
+ x %&gt;% tbl_df
+}
+
+pg_table &lt;- pg_table %&gt;% 
+  name_table %&gt;% 
+  tbl_df %&gt;% 
+  slice(-1)
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Building cleaning function</h2>
+  </hgroup>
+  <article>
+    <p>As with all scraping project a functional approach works amazing.</p>
+
+<pre><code class="r">clean_table &lt;- function(x){
+  # 1) Clean Amounts 
+  # 2) Clean Locations 
+  # 3) Coerce date
+
+  x %&gt;% 
+    slice(-1) %&gt;% 
+    select(Name, Substance, Amounts, Date_published, Location, Sample_size) %&gt;% 
+    filter(Substance %in% &quot;MDMA&quot;) %&gt;% 
+    mutate(Amounts = ifelse(Amounts == &quot;1&quot; , gsub(&quot;^([0-9]+) mg.*&quot;, &quot;\\1&quot;, Sample_size), 
+                            gsub(&quot;^([0-9]+).*&quot;, &quot;\\1&quot;, Amounts)), 
+           Amounts = as.numeric(Amounts)) %&gt;% 
+    filter(!is.na(Amounts)) %&gt;% 
+    mutate(Location = gsub(&quot;^(.*), .*&quot;, &quot;\\1&quot;, Location)) %&gt;% 
+    mutate(Date_published = lubridate::mdy(Date_published)) %&gt;% 
+    select(-Sample_size)
+}
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Crawl delay</h2>
+  </hgroup>
+  <article>
+    <p>We are going to build our own crawl-delay function using <code>Sys.sleep</code> and <code>runif</code></p>
+
+<pre><code class="r">nytnyt &lt;- function (periods = c(2,3)){
+  tictoc &lt;- runif(1, periods[1], periods[2])
+  cat(&quot;Sleeping for &quot;, round(tictoc, 2), &quot;seconds\n&quot;)
+  Sys.sleep(tictoc)
+}
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Putting all the pieces together</h2>
+  </hgroup>
+  <article>
+    <p>Building the pipeline</p>
+
+<pre><code class="r">starts &lt;- seq(0, 2000, 200)
+
+collect_pg &lt;- function(x){
+  read_html(paste0(&quot;https://www.ecstasydata.org/index.php?sort=DatePublishedU+desc&amp;start=&quot;, x ,
+                   &quot;&amp;max=200&quot;)) %&gt;% 
+  html_table(fill = T) %&gt;% 
+  .[[2]]
+}
+
+collect_pg(starts[1]) %&gt;% 
+  name_table(.) %&gt;% 
+  clean_table(.)
+</code></pre>
+
+<pre><code>## # A tibble: 65 x 5
+##    Name                     Substance Amounts Date_published Location  
+##    &lt;chr&gt;                    &lt;chr&gt;       &lt;dbl&gt; &lt;date&gt;         &lt;chr&gt;     
+##  1 Rolls Royce              MDMA         139. 2018-06-29     Zurich    
+##  2 Grey Duracell            MDMA         250. 2018-06-24     Manchester
+##  3 &quot;Vogel\nBird&quot;            MDMA         182. 2018-06-22     Zurich    
+##  4 Tesla                    MDMA         194. 2018-06-22     Zurich    
+##  5 &quot;Pik Ass\nAce of Spades&quot; MDMA         172. 2018-06-22     Zurich    
+##  6 AMG                      MDMA         170. 2018-06-22     Zurich    
+##  7 Silver                   MDMA         194. 2018-06-22     Zurich    
+##  8 Philipp Plein            MDMA         149. 2018-06-20     Innsbruck 
+##  9 &quot;SS\nZwei S&quot;             MDMA         133. 2018-06-20     Innsbruck 
+## 10 Dom Pérignon             MDMA         136. 2018-06-20     Vienna    
+## # ... with 55 more rows
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Putting all the pieces together (Cont.)</h2>
+  </hgroup>
+  <article>
+    <p>A use case for a <code>for</code> loop!</p>
+
+<pre><code class="r">all_pages &lt;- list()
+for(i in 1:length(starts)){
+  cat(&quot;[&quot;,paste0(Sys.time()), &quot;] Now collecting page &quot;, i, &quot;\n&quot;)
+
+  # Collection
+  all_pages[[i]] &lt;- collect_pg(starts[i]) %&gt;% 
+    name_table(.) %&gt;% 
+    clean_table()
+
+  nytnyt()
+}
+
+all_pages %&gt;% reduce(rbind)
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-46" style="background:url(https://media.giphy.com/media/g6dm5eMVxxo2Y/giphy.gif);background-size:cover; background-size:;">
+  <hgroup>
+    <h2>Where are the best drugs?</h2>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-47" style="background:; background-size:;">
+  <hgroup>
+    <h2>Answering the questions!</h2>
+  </hgroup>
+  <article>
+    <p>Apparently, Europe is not where the strongest drugs are surfacing:</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <pre><code class="r">all_pages %&gt;% 
+  group_by(Location) %&gt;% 
+  summarise(Strength = mean(Amounts),
+            pill_count = n()) %&gt;% 
+  arrange(-Strength) %&gt;%
+  filter(pill_count &gt; 10) %&gt;% 
+  ggplot(., aes(reorder(Location, Strength), Strength, fill = Location)) +
+  geom_bar(stat = &quot;Identity&quot;) +
+  coord_flip() +
+  labs(x = &quot;Location&quot;)
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" style="display: block; margin: auto;" /></p>
+
+</div>  
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
    			 <img src = "assets/img/logo.png" height="60" width="60">
@@ -1177,8 +1394,74 @@ rugby_form
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='NA'>
+        data-slide=36 title='Case Study: Investing drugs test'>
          36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Breaking down the URL'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Lets get started'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='NA'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Extract table'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Extract table'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Building cleaning function'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Crawl delay'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Putting all the pieces together'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Putting all the pieces together (Cont.)'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Where are the best drugs?'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Answering the questions!'>
+         47
       </a>
     </li>
   </ul>
