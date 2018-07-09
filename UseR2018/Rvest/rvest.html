@@ -61,7 +61,7 @@
   <hgroup class="auto-fadein">
     <h1>Scraping static websites with rvest</h1>
     <h2>Exploring Rvest</h2>
-    <p>Hanjo Odendaal<br/></p>
+    <p>Hanjo Odendaal<br/>www.daeconomist.com/ @UbuntR314</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -358,7 +358,7 @@ rtxt$comments %&gt;% tbl_df
     <h2>What part of the site may I visit?</h2>
   </hgroup>
   <article>
-    <p>FBI <em>literally</em> gives is almost free rein on their website!</p>
+    <p>FBI <em>literally</em> gives us almost free rein on their website!</p>
 
 <pre><code class="r">rtxt$permissions
 </code></pre>
@@ -689,209 +689,7 @@ rugby %&gt;%
     </footer>
   </article>
 </slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>Concluding rvest</h2>
-  </hgroup>
-  <article>
-    <p>Rvest is an amazing package for static website scraping and session control. For 90% of the websites out there, rvest will enable you to collect information in a well organised manner. For the other 10% you will need Selenium. </p>
-
-<p>I have added extra examples features of <code>rvest</code> that we will not get to today.</p>
-
-<p>So onwards to Selenium!!</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="segue" id="slide-28" style="background:; background-size:;">
-  <hgroup>
-    <h1>Added Extras</h1>
-  </hgroup>
-  <article>
-    
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>html_session()</h2>
-  </hgroup>
-  <article>
-    <p>Once you have basic static website scraping down, you need to start learning about sessions. What does this mean?</p>
-
-<ul>
-<li>cookies</li>
-<li>header requests</li>
-<li>status codes</li>
-</ul>
-
-<p>In essence you will be simulating browser activity. Do note, its different from a browser in that it cannot render javascript, but it can simulate moving through static webpages </p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>html_session()</h2>
-  </hgroup>
-  <article>
-    <p>So what does a session object contain?</p>
-
-<pre><code class="r">rugby &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
-rugby
-</code></pre>
-
-<pre><code>## {xml_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset= ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-sub ...
-</code></pre>
-
-<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
-rugby
-</code></pre>
-
-<pre><code>## &lt;session&gt; https://en.wikipedia.org/wiki/Rugby_World_Cup
-##   Status: 200
-##   Type:   text/html; charset=UTF-8
-##   Size:   272530
-</code></pre>
-
-<p>This becomes useful when you are interacting with websites; lets take a look at forms</p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <p><img src="assets/img/WC.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="100%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <p><img src="assets/img/form.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" style="display: block; margin: auto;" /></p>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>html_form()</h2>
-  </hgroup>
-  <article>
-    <p>So to interact with forms, we are going to use <code>html_session</code> and <code>html_form</code></p>
-
-<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
-rugby_form &lt;- rugby %&gt;% html_form()
-rugby_form
-</code></pre>
-
-<pre><code>## [[1]]
-## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
-##   &lt;input search&gt; &#39;search&#39;: 
-##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
-##   &lt;input submit&gt; &#39;fulltext&#39;: Search
-##   &lt;input submit&gt; &#39;go&#39;: Go
-</code></pre>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>html_form()</h2>
-  </hgroup>
-  <article>
-    <p>Next, we can actually fill in the form using <code>set_values</code></p>
-
-<pre><code class="r">rugby_form[[1]]$fields$search$value
-</code></pre>
-
-<pre><code>## NULL
-</code></pre>
-
-<pre><code class="r">rugby_form &lt;- set_values(rugby_form[[1]], search = &quot;cricket&quot;)
-rugby_form
-</code></pre>
-
-<pre><code>## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
-##   &lt;input search&gt; &#39;search&#39;: cricket
-##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
-##   &lt;input submit&gt; &#39;fulltext&#39;: Search
-##   &lt;input submit&gt; &#39;go&#39;: Go
-</code></pre>
-
-<pre><code class="r">cricket &lt;- submit_form(rugby, rugby_form)
-</code></pre>
-
-<pre><code>## Submitting with &#39;fulltext&#39;
-</code></pre>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="class" id="id" style="background:; background-size:;">
-  <hgroup>
-    <h2>html_form()</h2>
-  </hgroup>
-  <article>
-    <pre><code class="r">cricket %&gt;% 
-  html_nodes(&quot;a&quot;) %&gt;% 
-  html_attr(&quot;href&quot;) %&gt;% 
-  .[10:15]
-</code></pre>
-
-<pre><code>## [1] &quot;/wiki/Cricket&quot;                                        
-## [2] &quot;/wiki/India_national_cricket_team&quot;                    
-## [3] &quot;/wiki/History_of_cricket&quot;                             
-## [4] &quot;/wiki/One_Day_International&quot;                          
-## [5] &quot;/wiki/List_of_countries_received_ODI_status_(cricket)&quot;
-## [6] &quot;/wiki/2019_Cricket_World_Cup&quot;
-</code></pre>
-  
-    <footer class = 'logo'>
-    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
-   			 <img src = "assets/img/logo.png" height="60" width="60">
-		</div>
-    </footer>
-  </article>
-</slide>
-<slide class="segue" id="slide-36" style="background:; background-size:;">
+<slide class="segue" id="slide-27" style="background:; background-size:;">
   <hgroup>
     <h1>Case Study: Investing drugs test</h1>
   </hgroup>
@@ -945,7 +743,7 @@ pg
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-39" style="background:url(assets/img/site_html.png);background-size:cover; background-size:;">
+<slide class="segue" id="slide-30" style="background:url(assets/img/site_html.png);background-size:cover; background-size:;">
   <hgroup>
     
   </hgroup>
@@ -1138,7 +936,7 @@ all_pages %&gt;% reduce(rbind)
     </footer>
   </article>
 </slide>
-<slide class="segue" id="slide-46" style="background:url(https://media.giphy.com/media/g6dm5eMVxxo2Y/giphy.gif);background-size:cover; background-size:;">
+<slide class="segue" id="slide-37" style="background:url(https://media.giphy.com/media/g6dm5eMVxxo2Y/giphy.gif);background-size:cover; background-size:;">
   <hgroup>
     <h2>Where are the best drugs?</h2>
   </hgroup>
@@ -1146,7 +944,7 @@ all_pages %&gt;% reduce(rbind)
     
   </article>
 </slide>
-<slide class="" id="slide-47" style="background:; background-size:;">
+<slide class="" id="slide-38" style="background:; background-size:;">
   <hgroup>
     <h2>Answering the questions!</h2>
   </hgroup>
@@ -1168,9 +966,211 @@ all_pages %&gt;% reduce(rbind)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" style="display: block; margin: auto;" /></p>
+  <p><img src="assets/fig/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" style="display: block; margin: auto;" /></p>
 
 </div>  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Concluding rvest</h2>
+  </hgroup>
+  <article>
+    <p>Rvest is an amazing package for static website scraping and session control. For 90% of the websites out there, rvest will enable you to collect information in a well organised manner. For the other 10% you will need Selenium. </p>
+
+<p>I have added extra examples features of <code>rvest</code> that we will not get to today.</p>
+
+<p>So onwards to Selenium!!</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-40" style="background:; background-size:;">
+  <hgroup>
+    <h1>Added Extras</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_session()</h2>
+  </hgroup>
+  <article>
+    <p>Once you have basic static website scraping down, you need to start learning about sessions. What does this mean?</p>
+
+<ul>
+<li>cookies</li>
+<li>header requests</li>
+<li>status codes</li>
+</ul>
+
+<p>In essence you will be simulating browser activity. Do note, its different from a browser in that it cannot render javascript, but it can simulate moving through static webpages </p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_session()</h2>
+  </hgroup>
+  <article>
+    <p>So what does a session object contain?</p>
+
+<pre><code class="r">rugby &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby
+</code></pre>
+
+<pre><code>## {xml_document}
+## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset= ...
+## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-sub ...
+</code></pre>
+
+<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby
+</code></pre>
+
+<pre><code>## &lt;session&gt; https://en.wikipedia.org/wiki/Rugby_World_Cup
+##   Status: 200
+##   Type:   text/html; charset=UTF-8
+##   Size:   272641
+</code></pre>
+
+<p>This becomes useful when you are interacting with websites; lets take a look at forms</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p><img src="assets/img/WC.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="100%" style="display: block; margin: auto;" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p><img src="assets/img/form.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="display: block; margin: auto;" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <p>So to interact with forms, we are going to use <code>html_session</code> and <code>html_form</code></p>
+
+<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby_form &lt;- rugby %&gt;% html_form()
+rugby_form
+</code></pre>
+
+<pre><code>## [[1]]
+## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
+##   &lt;input search&gt; &#39;search&#39;: 
+##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
+##   &lt;input submit&gt; &#39;fulltext&#39;: Search
+##   &lt;input submit&gt; &#39;go&#39;: Go
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <p>Next, we can actually fill in the form using <code>set_values</code></p>
+
+<pre><code class="r">rugby_form[[1]]$fields$search$value
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">rugby_form &lt;- set_values(rugby_form[[1]], search = &quot;cricket&quot;)
+rugby_form
+</code></pre>
+
+<pre><code>## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
+##   &lt;input search&gt; &#39;search&#39;: cricket
+##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
+##   &lt;input submit&gt; &#39;fulltext&#39;: Search
+##   &lt;input submit&gt; &#39;go&#39;: Go
+</code></pre>
+
+<pre><code class="r">cricket &lt;- submit_form(rugby, rugby_form)
+</code></pre>
+
+<pre><code>## Submitting with &#39;fulltext&#39;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">cricket %&gt;% 
+  html_nodes(&quot;a&quot;) %&gt;% 
+  html_attr(&quot;href&quot;) %&gt;% 
+  .[10:15]
+</code></pre>
+
+<pre><code>## [1] &quot;/wiki/Cricket&quot;                                        
+## [2] &quot;/wiki/India_national_cricket_team&quot;                    
+## [3] &quot;/wiki/The_Crickets&quot;                                   
+## [4] &quot;/wiki/History_of_cricket&quot;                             
+## [5] &quot;/wiki/One_Day_International&quot;                          
+## [6] &quot;/wiki/List_of_countries_received_ODI_status_(cricket)&quot;
+</code></pre>
+  
     <footer class = 'logo'>
     	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
    			 <img src = "assets/img/logo.png" height="60" width="60">
@@ -1340,127 +1340,127 @@ all_pages %&gt;% reduce(rbind)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Concluding rvest'>
+        data-slide=27 title='Case Study: Investing drugs test'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Added Extras'>
+        data-slide=28 title='Breaking down the URL'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='html_session()'>
+        data-slide=29 title='Lets get started'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='html_session()'>
+        data-slide=30 title='NA'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='NA'>
+        data-slide=31 title='Extract table'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='NA'>
+        data-slide=32 title='Extract table'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='html_form()'>
+        data-slide=33 title='Building cleaning function'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='html_form()'>
+        data-slide=34 title='Crawl delay'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='html_form()'>
+        data-slide=35 title='Putting all the pieces together'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Case Study: Investing drugs test'>
+        data-slide=36 title='Putting all the pieces together (Cont.)'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Breaking down the URL'>
+        data-slide=37 title='Where are the best drugs?'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Lets get started'>
+        data-slide=38 title='Answering the questions!'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='NA'>
+        data-slide=39 title='Concluding rvest'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Extract table'>
+        data-slide=40 title='Added Extras'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Extract table'>
+        data-slide=41 title='html_session()'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Building cleaning function'>
+        data-slide=42 title='html_session()'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='Crawl delay'>
+        data-slide=43 title='NA'>
          43
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='Putting all the pieces together'>
+        data-slide=44 title='NA'>
          44
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='Putting all the pieces together (Cont.)'>
+        data-slide=45 title='html_form()'>
          45
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title='Where are the best drugs?'>
+        data-slide=46 title='html_form()'>
          46
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='Answering the questions!'>
+        data-slide=47 title='html_form()'>
          47
       </a>
     </li>
