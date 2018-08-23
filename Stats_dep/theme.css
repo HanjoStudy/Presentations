@@ -1,0 +1,231 @@
+/* Let's load some fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600,600i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+/* Generic stuff */
+
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+body { 
+  font-family: 'Open Sans';
+}
+
+.grViz {
+  margin-left:auto; margin-right:auto; display:block;
+}
+
+div.remark-slide-container h1 {
+	font-family: 'Titillium Web', sans-serif;
+	letter-spacing: -1px;
+}
+
+.inverse h1 {
+    line-height: 0.5em;
+}
+    
+div.remark-slide-container h2 {
+	font-family: 'Open Sans', sans-serif;
+	color: #45425c;
+	letter-spacing: -1px;
+}
+
+div.remark-slide-container h3 {
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	letter-spacing: -1px;
+	font-size: 24px;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+/* Hmm. How about the slide number. */
+
+.remark-slide-number {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	bottom: 18px;
+	color: #45425c;
+}
+
+/* Okay, now let's add a simple bottom border */ 
+
+div.my-footer {
+    background-color: #404262;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+div.my-footer span {
+    font-size: 10pt;
+    color: #F7F8FA;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}
+
+div.remark-slide {
+  border-bottom: 3px solid  #45425c;
+  box-shadow:  0 5px 0 #F66733;
+
+}
+
+/* Let's play with .inverse and a new class, .fullscale, a little more */
+
+.inverse {
+    color: white;
+    background-color: #45425c
+}
+
+div.remark-slide-container .fullscale {
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+}
+
+div.remark-slide-container .fullscale h1 {
+	color: #fff;
+
+}
+
+div.remark-slide-container .fullscale p {
+	color: #000;
+
+}
+
+.remark-slide-content {
+	text-shadow: 0 0 0px #333;
+}
+/* special slides css */
+/* ------------------ */
+.title-slide {
+	background-color: #fff;
+  background-image: url(./img/logo.png);
+	background-position: center bottom 170px;
+	background-size: 30%;
+	border-bottom: 0px solid  #45425c;
+	box-shadow:  0 55px 0 #fff;
+}
+
+
+.title-slide h1 {
+  color: #790936;
+	margin-top: -130px;
+	font-size: 42px;
+}
+
+.title-slide h2 {
+	font-size: 32px;
+}
+
+.body-slide{
+  border-top: 80px solid #222334;
+}
+
+/* logo */
+.body-slide:before{
+content: "";
+    position: absolute;
+    bottom: -60px;
+    left:   8px;
+    height: 100px;
+    width: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(./img/logo_small.png);
+}
+
+.body-slide h1 {
+  font-family: helvetica;
+  font-weight: bold;
+  font-size: 45px;
+  margin-top: -90px;
+  margin-left: -00px;
+  color: white;
+}
+
+.transition > h1 {
+  color: #790936;
+  font-size: 60;
+}
+
+/* Two-column layout */
+.left-column {
+  color: #777;
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 1em;
+}
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+.pull-right-center {
+  float: right;
+  width: 47%;
+  posi
+}
+.pull-right ~ * {
+  clear: both;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+blockquote {
+  border-left: solid 5px lightgray;
+  padding-left: 1em;
+  font-style: italic;
+}
+
+blockquote > p {
+  font-size: 24px;
+}
+
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee }
+
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+.footnote p{
+  position: absolute;
+  bottom: 3em;
+  padding-right: 4em;
+  font-size: 14px;
+}
