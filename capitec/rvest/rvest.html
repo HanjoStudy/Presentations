@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scraping static websites with rvest</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Scraping static websites with rvest">
+  <meta name="author" content="Hanjo Odendaal">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="libraries/widgets/leaflet/external/leaflet.css"></link>
+<link rel=stylesheet href="libraries/widgets/leaflet/external/leaflet-rCharts.css"></link>
+<link rel=stylesheet href="libraries/widgets/leaflet/external/legend.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+<link rel=stylesheet href="./assets/css/title_slide_bg_ex.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+<script src="libraries/widgets/leaflet/external/leaflet.js"></script>
+<script src="libraries/widgets/leaflet/external/leaflet-providers.js"></script>
+<script src="libraries/widgets/leaflet/external/Control.FullScreen.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/logo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/logo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Scraping static websites with rvest</h1>
+    <h2>Exploring Rvest</h2>
+    <p>Hanjo Odendaal<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <style type="text/css">
+body {background:grey transparent;
+}
+</style>
+
+<style>
+div.footnotes_link {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  width: 80%;
+  font-size: 0.6em;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('slide:not(.backdrop):not(.title-slide)').append('<div class=\"footnotes_link\">');
+
+  $('footnote').each(function(index) {
+    var text  = $(this).html();
+    var fnNum = (index+1).toString();
+    $(this).html(fnNum.sup());
+
+    var footnote   = fnNum + '. ' + text + '<br/>';
+    var oldContent = $(this).parents('slide').children('div.footnotes_link').html();
+    var newContent = oldContent + footnote;
+    $(this).parents('slide').children('div.footnotes_link').html(newContent);
+  });
+});
+</script>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-2" style="background:; background-size:;">
+  <hgroup>
+    <h2>First things first: Putting it all in perspective.</h2>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="segue" id="slide-3" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    
+ <p><a href="https://www.facebook.com/Rmemes0/">https://www.facebook.com/Rmemes0/</a></p>
+
+ <div id="slide-3-carousel" class="carousel slide ">
+   <!-- Indicators -->
+   <ol class="carousel-indicators">
+     <li data-target="#slide-3-carousel" data-slide-to="1" class="active"></li>
+     <li data-target="#slide-3-carousel" data-slide-to="2" class=""></li>
+     <li data-target="#slide-3-carousel" data-slide-to="3" class=""></li>
+     <li data-target="#slide-3-carousel" data-slide-to="4" class=""></li>
+   </ol>
+   <!-- Wrapper for slides -->
+   <div class="carousel-inner">
+     <div class="item active">
+       <img src="assets/img/meme_1.jpg" alt="" style="margin: auto; max-height: 500px; min-height: 500px;">
+       <div class="carousel-caption"><p>Talk to fellow R-Users for tips</p>
+</div>
+     </div>
+     <div class="item ">
+       <img src="assets/img/meme_2.jpg" alt="" style="margin: auto; max-height: 500px; min-height: 500px;">
+       <div class="carousel-caption"><p>There will always be haters</p>
+</div>
+     </div>
+     <div class="item ">
+       <img src="assets/img/meme_3.jpg" alt="" style="margin: auto; max-height: 500px; min-height: 500px;">
+       <div class="carousel-caption"><p>knit all the things</p>
+</div>
+     </div>
+     <div class="item ">
+       <img src="assets/img/meme_4.jpg" alt="" style="margin: auto; max-height: 500px; min-height: 500px;">
+       <div class="carousel-caption"><p>Good advice for beginners</p>
+</div>
+     </div>
+   </div>
+   <!-- Controls -->
+   <a class="left carousel-control" href="#slide-3-carousel" data-slide="prev">&lsaquo;</a>
+   <a class="right carousel-control" href="#slide-3-carousel" data-slide="next">&rsaquo;</a>
+ </div>
+  </article>
+</slide>
+<slide class="" id="slide-4">
+<hgroup>
+  <h2>Ethics</h2>
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>With great power comes great responsibility</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>The FAQ of Scraping</h2>
+  </hgroup>
+  <article>
+    <p>There is a big distinction here, we have to seperate <em>ethics</em> vs <em>law</em><footnote>I am <strong>not</strong> an <em>expert</em>, I just researched and read a couple of blogs. Sample size <em>n</em> = 3</footnote></p>
+
+<ul class = "build incremental">
+<li><p>Is scraping illegal?</p>
+
+<ul class = "build incremental">
+<li><em>Well... yes and no. At the moment the law is still undefined and has to catch up a lot to define online data collection. But, that being said, malicious attempts to halt a service of a website is a DDOS attack and is illegal</em></li>
+</ul></li>
+<li><p>What can I do to ensure I dont I dont expose myself or the company in a &#39;legal/ethical&#39; scraping project?</p>
+
+<ul class = "build incremental">
+<li><em>Personal data is a big no no. IF you are collecting data from a website which contains personal information. Make sure you are not collecting/saving any of it. Transform and ensure complete anonymization of data points</em></li>
+</ul></li>
+</ul>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>The rules of the game</h2>
+  </hgroup>
+  <article>
+    <h3>10 Commandments of the data scraper <footnote>Find the orignal <a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01">here</a></footnote></h3>
+
+<ul class = "build incremental">
+<li><p><strong>I Shall Go Through Appropriate Channels if Available:</strong> If the website has a public API that provides the data, use it and avoid scraping all together</p></li>
+<li><p><strong>Consider The Poor Sysadmin:</strong> Provide a User Agent string that makes intentions clear and provides a way for sysadmins to contact you with questions or concerns</p></li>
+<li><p><strong>I Am not A Robot:</strong> Request data at a reasonable rate (~<strong>5sec</strong> wait). Don&#39;t ever be confused for a DDoS attack. Play nice with others</p></li>
+<li><p><strong>I shall not become addicted to data:</strong> Collecting data without a cause is very Big Brother. Only take what you need</p></li>
+</ul>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>10 Commandments of the Data Scraper (Cont.)</h2>
+  </hgroup>
+  <article>
+    <ul class = "build incremental">
+<li><p><strong>I Shall Not Plageriase:</strong> If the website has a public API that provides the data, use it and avoid scraping all together</p></li>
+<li><p><strong>Not Just Interesting:</strong> Create new value from the data</p></li>
+<li><p><strong>Realise People Are People:</strong> Why scrape when you can just contact the holder who might SFTP it to you?</p></li>
+<li><p><strong>You Are Responsible, Not Your Boss:</strong> You are the expert, guide your line managers and highlight when you are uncomfortable</p></li>
+</ul>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-8" style="background:url(https://media.giphy.com/media/Ps89uHS7n72j6/giphy.gif);background-size:cover; background-size:;">
+  <hgroup>
+    <h2>robotstxt</h2>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Informal arrangements</h2>
+  </hgroup>
+  <article>
+    <p>Web site owners use the /robots.txt file to give instructions about their site to web robots; this is called The Robots Exclusion Protocol.</p>
+
+<ul>
+<li>Robots.txt is still a very informal &quot;institution&quot;, and there is no authoritative list of robots. Rvest wraps around the curl and httr packages-libraries, and neither has a robot name, beyond the one you could give them</li>
+</ul>
+
+<pre><code class="r">User-agent: *
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /~joe/
+</code></pre>
+
+<pre><code class="r">User-agent: Google
+Disallow:
+
+User-agent: *
+Disallow: /
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Using Robotstxt</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">if(!require(robotstxt)) install.packages(&quot;robotstxt&quot;)
+library(robotstxt)
+</code></pre>
+
+<pre><code class="r">rtxt &lt;- robotstxt(domain = &quot;www.fbi.gov&quot;)
+rtxt$comments %&gt;% tbl_df
+</code></pre>
+
+<pre><code>## # A tibble: 8 x 2
+##    line comment                                                           
+##   &lt;int&gt; &lt;chr&gt;                                                             
+## 1     3 # Define access-restrictions for robots/spiders                   
+## 2     4 # http://www.robotstxt.org/wc/norobots.html                       
+## 3     8 # By default we allow robots to access all areas of our site      
+## 4     9 # already accessible to anonymous users                           
+## 5    16 # Add Googlebot-specific syntax extension to exclude forms        
+## 6    17 # that are repeated for each piece of content in the site         
+## 7    18 # the wildcard is only supported by Googlebot                     
+## 8    19 # http://www.google.com/support/webmasters/bin/answer.py?answer=4~
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>What part of the site may I visit?</h2>
+  </hgroup>
+  <article>
+    <p>FBI <em>literally</em> gives us almost free rein on their website!</p>
+
+<pre><code class="r">rtxt$permissions
+</code></pre>
+
+<pre><code>##       field useragent                         value
+## 1  Disallow         *                              
+## 2  Disallow         *                    /@@search?
+## 3  Disallow         *                      /search?
+## 4  Disallow         *            /*atct_album_view$
+## 5  Disallow         *           /*folder_factories$
+## 6  Disallow         *        /*folder_summary_view$
+## 7  Disallow         *                 /*login_form$
+## 8  Disallow         *         /*mail_password_form$
+## 9  Disallow         *                 /*search_rss$
+## 10 Disallow         *                /*sendto_form$
+## 11 Disallow         *               /*summary_view$
+## 12 Disallow         *             /*thumbnail_view$
+## 13 Disallow         *                 /plonejsi18n$
+## 14 Disallow         * /*@@castle.cms.querylisting*?
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>What part of the site may I visit?</h2>
+  </hgroup>
+  <article>
+    <p>You can also extract the original robotxt file from a website using <code>get_robotstxt()</code></p>
+
+<pre><code class="r">get_robotstxt(&quot;fbi.gov&quot;) %&gt;% 
+  parse_robotstxt()
+</code></pre>
+
+<pre><code>## $useragents
+## [1] &quot;*&quot;
+## 
+## $comments
+##   line
+## 1    3
+## 2    4
+## 3    8
+## 4    9
+## 5   16
+## 6   17
+## 7   18
+## 8   19
+##                                                                             comment
+## 1                                   # Define access-restrictions for robots/spiders
+## 2                                       # http://www.robotstxt.org/wc/norobots.html
+## 3                      # By default we allow robots to access all areas of our site
+## 4                                           # already accessible to anonymous users
+## 5                        # Add Googlebot-specific syntax extension to exclude forms
+## 6                         # that are repeated for each piece of content in the site
+## 7                                     # the wildcard is only supported by Googlebot
+## 8 # http://www.google.com/support/webmasters/bin/answer.py?answer=40367&amp;ctx=sibling
+## 
+## $permissions
+##       field useragent                         value
+## 1  Disallow         *                              
+## 2  Disallow         *                    /@@search?
+## 3  Disallow         *                      /search?
+## 4  Disallow         *            /*atct_album_view$
+## 5  Disallow         *           /*folder_factories$
+## 6  Disallow         *        /*folder_summary_view$
+## 7  Disallow         *                 /*login_form$
+## 8  Disallow         *         /*mail_password_form$
+## 9  Disallow         *                 /*search_rss$
+## 10 Disallow         *                /*sendto_form$
+## 11 Disallow         *               /*summary_view$
+## 12 Disallow         *             /*thumbnail_view$
+## 13 Disallow         *                 /plonejsi18n$
+## 14 Disallow         * /*@@castle.cms.querylisting*?
+## 
+## $crawl_delay
+## [1] field     useragent value    
+## &lt;0 rows&gt; (or 0-length row.names)
+## 
+## $sitemap
+##     field useragent                              value
+## 1 Sitemap         * https://www.fbi.gov/sitemap.xml.gz
+## 
+## $host
+## [1] field     useragent value    
+## &lt;0 rows&gt; (or 0-length row.names)
+## 
+## $other
+## [1] field     useragent value    
+## &lt;0 rows&gt; (or 0-length row.names)
+</code></pre>
+
+<p>If you know exactly what you want to lookup, you can do a specific check on that url</p>
+
+<pre><code class="r">paths_allowed(&quot;http://google.com/search&quot;)
+</code></pre>
+
+<pre><code>## 
+ google.com
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Path lookup in batch</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">paths_allowed(
+  paths  = c(&quot;images/&quot;,&quot;/search&quot;), 
+  domain = c(&quot;wikipedia.org&quot;, &quot;google.com&quot;),
+  bot    = &quot;Orthogaffe&quot;
+)
+</code></pre>
+
+<pre><code>## 
+ wikipedia.org                      
+ google.com
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE
+</code></pre>
+
+<p>Lets have a final look at the <a href="https://en.wikipedia.org/robots.txt">wikipedia</a> <code>robottxt</code> file</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Crawl-delay</h2>
+  </hgroup>
+  <article>
+    <p>Remember as part of the commandments we must ensure our scraper behaves well and not try an access all files all at once? The <code>crawl_delay</code> feature comes into play here:</p>
+
+<pre><code class="r">rtxt$crawl_delay
+</code></pre>
+
+<pre><code>## [1] field     useragent value    
+## &lt;0 rows&gt; (or 0-length row.names)
+</code></pre>
+
+<p>But what if the <code>robottxt</code> file we downloaded did not contain any information?</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Then sleep for around 5 - 10 seconds between calls</h2>
+  </hgroup>
+  <article>
+    <p><img src="assets/img/crawl_delay.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>What do I mean by sleeping between calls?</h2>
+  </hgroup>
+  <article>
+    <p>We need to tell <code>R</code> to not go absolutely beserek and try and get all the pages we want to investigate at once, we do this using the <code>Sys.sleep</code> command</p>
+
+<pre><code class="r">nytnyt &lt;- function (periods = c(1,1.5)){
+  tictoc &lt;- runif(1, periods[1], periods[2])
+  cat(paste0(Sys.time()), &quot;- Sleeping for &quot;, round(tictoc, 2), &quot;seconds\n&quot;)
+  Sys.sleep(tictoc)
+}
+nytnyt()
+</code></pre>
+
+<pre><code>## 2018-08-29 19:16:02 - Sleeping for  1.27 seconds
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="segue" id="slide-17" style="background:url(https://media.giphy.com/media/ohONS2y8GTDoI/giphy.gif);background-size:cover; background-size:;">
+  <hgroup>
+    <h2>rvest</h2>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Installing rvest</h2>
+  </hgroup>
+  <article>
+    <p>Easy har-<em>vest</em>-ing of static websites. Welcome to rvest</p>
+
+<pre><code class="r">if(!require(rvest)) install.packages(&quot;rvest&quot;)
+library(rvest)
+</code></pre>
+
+<p>If you have used <code>XML</code> before, <code>rvest</code> is a dish of the same flavour</p>
+
+<pre><code class="r">read_html(&quot;https://api.ipify.org?format=json&quot;)
+</code></pre>
+
+<pre><code>## {xml_document}
+## &lt;html&gt;
+## [1] &lt;body&gt;&lt;p&gt;{&quot;ip&quot;:&quot;81.26.78.82&quot;}&lt;/p&gt;&lt;/body&gt;
+</code></pre>
+
+<p>Now to extend on this example...</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Our first function</h2>
+  </hgroup>
+  <article>
+    <p>Running this command line for gives us an idea of some of the basic functions of <code>rvest</code></p>
+
+<pre><code class="r">get_ip &lt;- function(){
+  read_html(&quot;https://api.ipify.org?format=json&quot;) %&gt;% 
+    html_text() %&gt;% 
+    jsonlite::fromJSON()
+}
+get_ip()
+</code></pre>
+
+<pre><code>## $ip
+## [1] &quot;81.26.78.82&quot;
+</code></pre>
+
+<blockquote>
+<p>Well done, you hacker you!</p>
+</blockquote>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>DOM who? Learning the jargon</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">ask &lt;- read_html(&quot;http://ask.com&quot;)
+ask %&gt;% html_nodes(&quot;div&quot;)
+</code></pre>
+
+<pre><code>## {xml_nodeset (15)}
+##  [1] &lt;div class=&quot;l-header&quot;&gt;\n    &lt;div class=&quot;l-header-container&quot;&gt;\n      ...
+##  [2] &lt;div class=&quot;l-header-container&quot;&gt;\n        \n\n\n&lt;/div&gt;
+##  [3] &lt;div class=&quot;main&quot;&gt;\n    &lt;div class=&quot;l-mid-content content-visible&quot;&gt; ...
+##  [4] &lt;div class=&quot;l-mid-content content-visible&quot;&gt;\n        &lt;div class=&quot;l- ...
+##  [5] &lt;div class=&quot;l-mid-container&quot;&gt;\n            \n\n\n\n&lt;script&gt;\n       ...
+##  [6] &lt;div class=&quot;wrap-sides&quot;&gt;\n    &lt;div class=&quot;PartialHome-wrapper&quot; data ...
+##  [7] &lt;div class=&quot;PartialHome-wrapper&quot; data-zen=&quot;true&quot;&gt;\n        \n&lt;div c ...
+##  [8] &lt;div class=&quot;PartialHome-wrapper-logo&quot;&gt;&lt;/div&gt;
+##  [9] &lt;div class=&quot;search-bar&quot;&gt;\n            &lt;form accept-charset=&quot;UTF-8&quot;  ...
+## [10] &lt;div class=&quot;PartialHome-clear search-clear js-PartialHome-clear&quot;&gt;&lt;/ ...
+## [11] &lt;div class=&quot;l-right-content content-visible&quot;&gt;\n\n&lt;/div&gt;
+## [12] &lt;div class=&quot;l-footer content-visible&quot;&gt;\n    &lt;div class=&quot;l-footer-co ...
+## [13] &lt;div class=&quot;l-footer-container&quot;&gt;\n        \n\n    \n\n&lt;div class=&quot;P ...
+## [14] &lt;div class=&quot;PartialFooter-body&quot;&gt;\n    &lt;ul class=&quot;PartialFooter-list ...
+## [15] &lt;div id=&quot;shadow&quot; style=&quot;height: 100%; display: none;&quot;&gt;&lt;/div&gt;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="" id="slide-21" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>What is the Document Object Model</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>The Document Object Model (DOM) is a programming interface (API) for HTML and XML documents.</li>
+<li>DOM represents the document as <strong>nodes</strong> and <strong>objects</strong>. Its the way programming languages connect to the page</li>
+<li>DOM is an object-oriented representation of the web page, which can be modified or accessed<footnote>Useful <a href="https://javascript.info/dom-nodes">link</a></footnote></li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/img/peter_html.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="100%" /></p>
+
+</div>  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_table()</h2>
+  </hgroup>
+  <article>
+    <p><code>html_table()</code> is an easy to use wrapper that identifies the nodes of class <code>&lt;td&gt;&lt;/td&gt;</code> and <code>&lt;th&gt;&lt;/th&gt;</code>. </p>
+
+<pre><code class="r">getAnywhere(&quot;html_table&quot;)
+</code></pre>
+
+<pre><code>## A single object matching &#39;html_table&#39; was found
+## It was found in the following places
+##   package:rvest
+##   namespace:rvest
+## with value
+## 
+## function (x, header = NA, trim = TRUE, fill = FALSE, dec = &quot;.&quot;) 
+## {
+##     UseMethod(&quot;html_table&quot;)
+## }
+## &lt;environment: namespace:rvest&gt;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_table() disection</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">methods(&quot;html_table&quot;)
+</code></pre>
+
+<pre><code>## [1] html_table.session*      html_table.xml_document*
+## [3] html_table.xml_node*     html_table.xml_nodeset* 
+## see &#39;?methods&#39; for accessing help and source code
+</code></pre>
+
+<pre><code class="r">rvest:::html_table.xml_document
+</code></pre>
+
+<pre><code>## function (x, header = NA, trim = TRUE, fill = FALSE, dec = &quot;.&quot;) 
+## {
+##     tables &lt;- xml2::xml_find_all(x, &quot;.//table&quot;)
+##     lapply(tables, html_table, header = header, trim = trim, 
+##         fill = fill, dec = dec)
+## }
+## &lt;environment: namespace:rvest&gt;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_table()</h2>
+  </hgroup>
+  <article>
+    <p>Lucky for us, we don&#39;t need to know what is happening in the background! I am going to explore the rugby world Cup information from wikipedia</p>
+
+<pre><code class="r">rugby &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby_tables &lt;- rugby %&gt;% html_table(., fill = T)
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_table()</h2>
+  </hgroup>
+  <article>
+    <p>Lucky for us, we don&#39;t need to know what is happening in the background! I am going to explore the rugby world Cup information from wikipedia</p>
+
+<pre><code class="r">rugby &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby_tables &lt;- rugby %&gt;% html_table(., fill = T)
+</code></pre>
+
+<pre><code class="r">library(scales)
+rugby_tables %&gt;% 
+  .[[3]] %&gt;% 
+  mutate(attendance = as.numeric(gsub(&quot;[^0-9.-]+&quot;, &quot;&quot;, `Total attendance`))) %&gt;%
+  ggplot(., aes(Year, attendance, fill = attendance)) + 
+  geom_bar(stat = &quot;Identity&quot;) + 
+  labs(title = &quot;World Cup Rugby Attendance&quot;, 
+       subtitle = &quot;1987 - 2015&quot;) +
+  scale_y_continuous(label = comma) + 
+  theme_light()
+</code></pre>
+
+<pre><code>## Warning: Removed 1 rows containing missing values (position_stack).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_nodes()</h2>
+  </hgroup>
+  <article>
+    <p>Ok, lets see how we can use the nodes to extract data</p>
+
+<ul>
+<li>Using the selector gadget, we can identify nodes within the DOM, that we would like to focus on</li>
+<li>There are 2 methods by which you can isolate a node: CSS and xpath</li>
+</ul>
+
+<pre><code class="r">rugby %&gt;% 
+  html_nodes(., xpath = &#39;//*[(@id = &quot;toc&quot;)]&#39;) %&gt;% 
+  html_text %&gt;% 
+  cat
+</code></pre>
+
+<pre><code>## Error in doc_namespaces(doc): external pointer is not valid
+</code></pre>
+
+<pre><code class="r">rugby %&gt;% 
+  html_nodes(., &#39;div#toc.toc&#39;) %&gt;% 
+  html_text %&gt;% 
+  cat
+</code></pre>
+
+<pre><code>## Error in doc_namespaces(doc): external pointer is not valid
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_session()</h2>
+  </hgroup>
+  <article>
+    <p>Once you have basic static website scraping down, you need to start learning about sessions. What does this mean?</p>
+
+<ul>
+<li>cookies</li>
+<li>header requests</li>
+<li>status codes</li>
+</ul>
+
+<p>In essence you will be simulating browser activity. Do note, its different from a browser in that it cannot render javascript, but it can simulate moving through static webpages </p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_session()</h2>
+  </hgroup>
+  <article>
+    <p>So what does a session object contain?</p>
+
+<pre><code class="r">rugby &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby
+</code></pre>
+
+<pre><code>## {xml_document}
+## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset= ...
+## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-sub ...
+</code></pre>
+
+<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby
+</code></pre>
+
+<pre><code>## &lt;session&gt; https://en.wikipedia.org/wiki/Rugby_World_Cup
+##   Status: 200
+##   Type:   text/html; charset=UTF-8
+##   Size:   273769
+</code></pre>
+
+<p>This becomes useful when you are interacting with websites; lets take a look at forms</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p><img src="assets/img/WC.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p><img src="assets/img/form.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <p>So to interact with forms, we are going to use <code>html_session</code> and <code>html_form</code></p>
+
+<pre><code class="r">rugby &lt;- html_session(&quot;https://en.wikipedia.org/wiki/Rugby_World_Cup&quot;)
+rugby_form &lt;- rugby %&gt;% html_form()
+rugby_form
+</code></pre>
+
+<pre><code>## [[1]]
+## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
+##   &lt;input search&gt; &#39;search&#39;: 
+##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
+##   &lt;input submit&gt; &#39;fulltext&#39;: Search
+##   &lt;input submit&gt; &#39;go&#39;: Go
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <p>Next, we can actually fill in the form using <code>set_values</code></p>
+
+<pre><code class="r">rugby_form[[1]]$fields$search$value
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">rugby_form &lt;- set_values(rugby_form[[1]], search = &quot;cricket&quot;)
+rugby_form
+</code></pre>
+
+<pre><code>## &lt;form&gt; &#39;searchform&#39; (GET /w/index.php)
+##   &lt;input search&gt; &#39;search&#39;: cricket
+##   &lt;input hidden&gt; &#39;title&#39;: Special:Search
+##   &lt;input submit&gt; &#39;fulltext&#39;: Search
+##   &lt;input submit&gt; &#39;go&#39;: Go
+</code></pre>
+
+<pre><code class="r">cricket &lt;- submit_form(rugby, rugby_form)
+</code></pre>
+
+<pre><code>## Submitting with &#39;fulltext&#39;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>html_form()</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">cricket %&gt;% 
+  html_nodes(&quot;a&quot;) %&gt;% 
+  html_attr(&quot;href&quot;) %&gt;% 
+  .[10:15]
+</code></pre>
+
+<pre><code>## [1] &quot;/wiki/Cricket&quot;                     &quot;/wiki/India_national_cricket_team&quot;
+## [3] &quot;/wiki/Test_cricket&quot;                &quot;/wiki/First-class_cricket&quot;        
+## [5] &quot;/wiki/Cricket_(insect)&quot;            &quot;/wiki/Cricket_ball&quot;
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Concluding rvest</h2>
+  </hgroup>
+  <article>
+    <p>Rvest is an amazing package for static website scraping and session control. For 90% of the websites out their, rvest will enable you to collect information in a well organised manner. For the other 10% you will need Selenium.</p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Putting it all into practice</h2>
+  </hgroup>
+  <article>
+    <p>Imagine the following: </p>
+
+<ul>
+<li><p>I am a leading bank in South Africa needing to find out the location of my competitors branch and ATM location</p></li>
+<li><p>Where do I start?</p>
+
+<ul>
+<li>Investigate the website of the competitor</li>
+<li>Maybe they have the locations on the website and I can just collect the street addresses and then use address to gps to get locations</li>
+</ul></li>
+</ul>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>What does the main page tell me?</h2>
+  </hgroup>
+  <article>
+    <p><img src="assets/img/main_page.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Striking gold</h2>
+  </hgroup>
+  <article>
+    <p><img src="assets/img/capitec_branch.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Striking gold</h2>
+  </hgroup>
+  <article>
+    <p><img src="assets/img/capitec_branch2.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Investigate the HTML</h2>
+  </hgroup>
+  <article>
+    <p><img src="assets/img/capitec_branch3.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" /></p>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Extracting the correct fields</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li><p>Important to notice what is happening in the <code>URL</code> of the page as it will tell me how the server on the other side is handling api calls.</p></li>
+<li><p>First off I tried the <code>controlLeftPanel</code> <code>div</code> to see if the hidden information can be retrieved</p></li>
+</ul>
+
+<pre><code class="r">library(rvest)
+
+pg &lt;- read_html(&quot;https://www.capitecbank.co.za/branch-locator?searchTerm=c
+                &amp;_atms=&amp;_cashAcceptingAtms=&amp;_branches=&amp;_homeloans=&quot;)
+
+# collected 4109 xml_nodeset
+pg_set &lt;- pg %&gt;% 
+  html_nodes(&quot;div.contactLeftPanel&quot;)
+
+pg_set %&gt;% 
+  head() %&gt;% html_text()
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Extracting the correct fields</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li><p>I realised I was too low down in tree and as such moved up higher</p></li>
+<li><p>This meant that I now tried to isolate the node of class <code>branchContactDetail branchFilter</code></p></li>
+</ul>
+
+<pre><code class="r">branches &lt;- pg %&gt;% 
+  html_nodes(&quot;div.branchContactDetail.branchFilter&quot;)
+
+branch_id &lt;- branches %&gt;% 
+  html_attr(&quot;id&quot;)
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>Extracting the gps fields</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>After I had my ids (which links to the other information on the website). I wanted to extract the GPS field</li>
+</ul>
+
+<pre><code class="r">branches &lt;- pg %&gt;% 
+  html_nodes(&quot;div.branchContactDetail.branchFilter&quot;)
+
+branches %&gt;% 
+  .[1] %&gt;% 
+  html_nodes(&quot;input&quot;) %&gt;% 
+  html_attrs() %&gt;% 
+  reduce(cbind) %&gt;% data.frame
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>To then clean the data I opted for a nice cleaning script which I could use to <code>map</code> over the different <code>xml_nodesets</code> and clean the data so that the data is easier to use</p>
+
+<pre><code class="r">clean_atms &lt;- function(x){
+ x &lt;- x %&gt;% html_nodes(&quot;input&quot;) %&gt;% 
+    html_attrs() %&gt;% 
+    reduce(cbind) %&gt;% data.frame
+
+ x &lt;- x %&gt;% 
+   set_names(x[2,])
+
+ x %&gt;% slice(3)
+
+}
+
+branches &lt;- branches %&gt;% 
+  map(~.x %&gt;% clean_atms) %&gt;% 
+  reduce(rbind)
+</code></pre>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+<slide class="class" id="id" style="background:; background-size:;">
+  <hgroup>
+    <h2>How the data can then come to life</h2>
+  </hgroup>
+  <article>
+    <iframe  title="My Map" width="980" height="400" src="m.html" frameborder="0" allowfullscreen></iframe>
+  
+    <footer class = 'logo'>
+    	<div style="position: absolute; left: 1000px; top: 50px; z-index:100">
+   			 <img src = "assets/img/logo.png" height="60" width="60">
+		</div>
+    </footer>
+  </article>
+</slide>
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='First things first: Putting it all in perspective.'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Ethics'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='The FAQ of Scraping'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='The rules of the game'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='10 Commandments of the Data Scraper (Cont.)'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='robotstxt'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Informal arrangements'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Using Robotstxt'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='What part of the site may I visit?'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='What part of the site may I visit?'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Path lookup in batch'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Crawl-delay'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Then sleep for around 5 - 10 seconds between calls'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='What do I mean by sleeping between calls?'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='rvest'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Installing rvest'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Our first function'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='DOM who? Learning the jargon'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='NA'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='html_table()'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='html_table() disection'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='html_table()'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='html_table()'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='html_nodes()'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='html_session()'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='html_session()'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='NA'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='NA'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='html_form()'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='html_form()'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='html_form()'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Concluding rvest'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Putting it all into practice'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='What does the main page tell me?'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Striking gold'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Striking gold'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Investigate the HTML'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Extracting the correct fields'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Extracting the correct fields'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Extracting the gps fields'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='NA'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='How the data can then come to life'>
+         44
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
