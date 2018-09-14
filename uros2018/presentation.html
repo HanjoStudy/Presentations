@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Media based sentiment indices as an alternative measure of    consumer confidence</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Nicolaas Johannes (Hanjo) Odendaal    Department of Economics/ BER     https://www.daeconomist.com" />
+    <script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <script src="libs/datatables-binding-0.2/datatables.js"></script>
+    <link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="theme.css" type="text/css" />
+    <link rel="stylesheet" href="theme_fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Media based sentiment indices as an alternative measure of<br /> <br /> consumer confidence
+## .font80[Evidence for for South Africa]
+### Nicolaas Johannes (Hanjo) Odendaal<br /> <br /> Department of Economics/ BER <br /> <br /> <a href="https://www.daeconomist.com" class="uri">https://www.daeconomist.com</a>
+
+---
+
+
+
+
+
+
+&lt;!-- layout: true --&gt;
+
+&lt;!-- &lt;div class="my-header"&gt;&lt;/div&gt; --&gt;
+
+&lt;!-- &lt;div class="my-footer"&gt;&lt;span&gt;Hanjo Odendaal     --&gt;
+&lt;!-- &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; --&gt;
+&lt;!-- &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; --&gt;
+&lt;!-- Department of economics&lt;/span&gt;&lt;/div&gt;  --&gt;
+
+---
+class: center, middle, transition
+
+# What is the news really trying to say?
+
+&gt; More information is always better than less. When people know the reason things are happening, even if it's bad news, they can adjust their expectations and react accordingly.
+
+???
+Data is being generated at higher volumes as well as in a host of different formats. Information is no longer the result of physical sampling or surveying, but rather a by-product of economic activity 
+
+In the same way, the field of economics is starting to embrace the data revolution by rethinking how this kind of data could be employed within standard economic analysis
+
+Opening up the possibility of using data to inform policy to a greater extent
+
+---
+class: body-slide
+
+# Research question 
+
+The research attempts to gauge the feasibility of constructing online sentiment indices using large amounts of text data as an alternative for the conventional survey method
+
+* Can news wholly act as an indicator on consumer confidence
+  
+  * Analysis of economic fluctuations through a bottom up modeling approach
+
+  * We construct a monthly series to try and explore this hypothesis
+
+* We illustrate and suggest a quantitative framework which researchers and practitioners could employ to help build their own indices
+
+  * This is especially important when the data is of a very high-dimensional nature &lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+[1] As is the case with text documents
+]
+
+???
+Why are we going through all this effort? 
+
+* Surveys can be expensive to conduct 
+* Large coverage of topics and population
+* High frequency
+
+---
+
+class: inverse, middle, center
+
+# Understanding consumer confidence
+
+???
+In trying to understand the symbiotic relationship between consumer confidence and the real economy. Two contesting theories are mostly cited
+---
+
+class: body-slide
+
+# Animal spirits
+
+The 'animal spirits' hypothesis was a thought experiment first put forth by Keynes 1937
+
+&gt; Most, probably, of our decisions to do something positive, the full consequences of which will be drawn out over many days to come, can only be taken as the result of *animal spirits*, a spontaneous urge to action rather than inaction, and not as the outcome of a weighted average of quantitative benefits multiplied by quantitative probabilities. - Keynes (1937)
+
+* An unexpected change in the business cycle could occur due to the 'gut', or sentiment outlook, of economic agents reacting out of subjective foresight, rather than *quantitative* evidence
+
+* This in turn changes economic activity through a consumer sentiment shock
+
+There is also a *contradicting* philosophy where informational news is the main driving component
+
+???
+I have coined this idea as informational contagion. SO the spread of information among economic agents as a result of access to economic understanding as portraid through the media
+---
+
+class: body-slide
+
+# Informational contagion
+
+News about the future state of the economy has already been internalised by economic agents, while not yet being captured in hard statistics.
+
+.pull-left[
+Beaudry and Portier (2014) and Barsky and Sims (2012) argue that only a limited amount of unexpected business cycle fluctuations can be attributed towards 'animal spirits'; stating that uncaptured fundamental news is the primary channel by which the relationship of sentiment and subsequent economic activity exists
+]
+
+.pull-right[
+![:scale 50%;](https://media.giphy.com/media/qKltgF7Aw515K/giphy.gif)
+]
+
+From the two above explored philosophies, our research sides with information contagion and hypothesize that that informational news about the economy could be exploited. 
+This is especially exciting if you can achieve this a high frequency.
+
+???
+
+* For both the schools of thought, 'informational contagion' or 'animal spirits', the consensus remains the same - consumer confidence and economic activity have a strong correlation
+
+* It is thus useful to incorporate consumer confidence into any model that wishes to forecast the future state of the economy. The reasons for the correlation is still debatable and remain open for discussion.
+
+---
+
+class: body-slide
+
+# Current literature on the subject
+
+*Where there is smoke there is fire...*
+
+* P. J. Daas and M. Puts (2014) 
+    - Considers the construction of a Dutch *social media* sentiment index (SMI) derived from Facebook, Twitter and various other online data sources. The finding of the paper concluded that a strong association exists between consumer confidence and the sentiment displayed by public Facebook messages.
+
+* Brakel et al. (2017) 
+    - Investigates the Dutch SMI by using a multivariate structural time series approach to estimate whether the inclusion of social media in the production of Dutch administrative statistics improve their accuracy
+    - Their findings motivates that the SMI can be seen as a substitution for the more traditional survey approach
+    
+The Dutch National Statistics office was one of the first to start exploring the idea &lt;sup&gt;1&lt;/sup&gt;, but the practical implications when using social media data is disadvantageous.
+
+.pull-right[
+![:scale 30%;](./img/cbs.png)]
+
+.footnote[
+[1] I have to recognise Piet Daas and Marco Puts work - they are the reason why I am doing my PhD ;-)
+]
+
+???
+* Why I am not a proponent of using social media data... Data is quite large
+* Disadvantage: You assuming that the publishing agents actually know what is going on in the economy (which might be the case in developed countries), but cannot be assumed to be true in developing nations
+
+---
+class: body-slide
+
+# Proposed framework to build sentiment indices
+
+&lt;img src="img/flow.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: body-slide
+
+# Traditional survey approaches towars measuring consumer confidence
+
+The consumer confidence questions consists out of the following:
+
+1. *How do you expect the general economic position in South Africa to develop during the next 12 months? Will it improve considerably, improve slightly, deteriorate slightly, deteriorate considerably or don’t know?*
+2. *How do you expect the financial position in your household to develop in the next 12 months? Will it improve considerably, improve slightly, deteriorate slightly, deteriorate considerably or don’t know?*
+3. *What is your opinion of the suitability of the present time for the purchase of domestic appliances such as furniture, washing machines, refrigerators etc. Do you think that for people in general it is the right time, neither a good nor a bad time or the wrong time?*
+
+Index constructed as a normalised sum of relative scores. 
+
+Percentage of respondents expecting an improvement / good time less the percentage expecting a deterioration / bad time
+
+---
+
+class: body-slide
+
+# Text-based construction of confidence indicators
+
+A dictionary "bag-of-words" approach to sentiment mining is widely used.
+
+<div id="htmlwidget-9806535f45f0942b4fa6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9806535f45f0942b4fa6">{"x":{"filter":"none","data":[["bing","bing","nrc","nrc","nrc","nrc","nrc","nrc","nrc","nrc","nrc","nrc","loughran","loughran","loughran","loughran","loughran","loughran","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","henry","henry","harvard_four","harvard_four"],["sh*t","deft","bummer","happen","cholera","claw","sweets","falsify","pastry","worn","generosity","guarded","pledges","claim","curtailment","compliment","cognizable","predictors","harming","able","unforecasted","smallest","deliver","unforeseen","back"],["negative","positive","anger","anticipation","disgust","fear","joy","negative","positive","sadness","surprise","trust","constraining","litigious","negative","positive","superfluous","uncertainty","negative","positive","uncertainty","negative","positive","negative","positive"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>dictionary<\/th>\n      <th>word<\/th>\n      <th>sentiment<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data) {\nvar value=data[2]; if (value!==null) $(this.api().cell(row, 2).node()).css({'background-color':value == 'negative' ? '#A64C62' : value == 'positive' ? '#4ca690' : ''});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+---
+
+class: body-slide
+
+&lt;img src="img/news_example.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+class: body-slide
+
+# Text-based construction of confidence indicators (Cont.)
+
+Doing a simple word count that consists out of the positive and negative words, we normalise the count so that they reflect the relative fraction of positive and negative words within an article:
+
+`$$Pos_{i, t, n^a} = \frac{PositiveWords}{PositiveWords + NegativeWords} \\
+Neg_{i, t, n^a} = \frac{NegativeWords}{PositiveWords + NegativeWords}$$`
+
+The polarity of the article is derived from the score. 
+
+`$$S_{i, t, n^a} = Pos_{i, t, n^a} - Neg_{i, t, n^a}$$`
+
+If the score of the article is greater than zero, then the overall sentiment for the article is deemed to be positive, the same can be said for a negative sentiment score.
+
+---
+
+class: body-slide
+
+# Text-based construction of confidence indicators (Cont.)
+
+The index is constructed as the *net balance of positive and negative articles* within a month. This method of constructing an index should be familiar, as it is the same method the University of Michigan uses to construct their well known consumer confidence index
+
+`$$\mathcal{I}_{t} = \frac{PositiveArticles - NegativeArticles}{PositiveArticles + NegativeArticles}$$`
+
+* All indexes are finally smoothed using a Kalman Filter
+
+---
+
+class: body-slide
+
+# How do the indices compare against CCI?
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-3-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+background-image: url(https://github.com/yihui/xaringan/releases/download/v0.0.2/karl-moustache.jpg)
+---
+
+class: body-slide
+
+# Isolating noise from signal
+
+The aim is to identify the best confidence candidates that mimic's the BER's CCI from the plethora of indexes created. 
+
+--
+
+* To accomplish this, we turn to the field of time series clustering methods. The aim is to sub-divide the large sample set, through clustering, into smaller homogeneous buckets 
+  * To identify which of the indexes created resemble the lowest dissimilarity with the BER's consumer confidence index
+
+--
+
+The steps in applying the analysis is two-fold
+
+* Step 1
+    - Identify an appropriate dissimilarity matrix between the indices created and the CCI
+    - Use hierarchical clustering to construct clusters which consists out of all the indices
+
+* Step 2
+    - Use both the distance measure and the formed clusters to build composite indices using PCAs
+    
+From this we hope to identify a cluster which has indices similar to the traditional CCI
+
+---
+
+class: body-slide
+
+# Choice of dissimilarity measure
+
+Decide to use a non-model based dissimilarity measure, called **Dynamic Time Warping**. Dynamic time warping allows for the recognition of similar shapes between time series, even in the presence of signal transformation such as shifting or scaling. A toy example of how dynamic time warping creates a mapping between time series can be seen here:
+
+&lt;img src="img/dtw_example.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+--
+
+* Advantage is that a pearson correlation based measure would discount any of the constructed series which might lead the CCI!
+
+---
+
+class: body-slide
+
+# Clustering
+
+Hierarchical clustering has two paradigms when approaching the clustering problem, agglomerative and divise. To conduct the clustering we use a commonly know hierarchical clustering method from `hclust` which is an agglomerative algorithm.
+
+* The algorithm starts by assigning each observation to its own cluster
+* Next it computes the similarity between each of the clusters and joining those who are most similar
+
+This procedure is repeated until a final cluster is formed in a tree-like fashion. 
+
+* Height of the tree at each node is proportional to the value of the inter-group dissimilarity between its daughter nodes
+
+This structure is more commonly known as a *dendogram*
+
+---
+class: body-slide
+
+# Clustering: results
+
+The graph visualises a separation between two of the clusters and the other four. The series which forms part of the most left-hand side cluster all have one thing in common, an increasing overall trend, or an increasing trend over the period of 2017:
+
+
+&lt;img src="img/Rplot.jpeg" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+class: body-slide
+
+# Principle component results: Consumer (Cont)
+
+..pull-left[
+  ![:scale 80%;](./img/animation.gif)
+]
+..pull-right[
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: body-slide
+
+# Comovement Analysis
+
+To help answer the question of whether the indices can be considered alternatives for the
+traditional CCI, the indices need to either have a high contemporaneous correlation or lead
+the index. In order to construct the correlation between the monthly and quarterly series we
+convert the monthly indices to a quarterly one
+
+..pull-left[
+  ![:scale 60%;](./img/animation.gif)
+]
+..pull-right[
+
+&lt;img src="img/corr_table.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+class: body-slide
+
+# Conclude
+
+It is possible to construct a media based sentiment index that could potentially act as an alternative to the traditional survey based consumer confidence index.  
+
+  * Developed monthly index ( composite MSI) that measures economic sentiment that resembles the traditional CCI
+  * Motivates for the use of large text data as an alternative source to construct economic indicators
+
+Alonside the analaysis we construct a framework that future research can build on:
+
+  * Time series clustering techniques can aid in evaluating a large number of indexes at once within high dimensional analysis
+
+-- 
+
+*R Package - Analytics:* `tidytext`, `hunspell`, `SnowballC`, `pdftools`, `dlm`, `tbl2xts`, `TSclust`,`tidyverse` (especially `purrr`)
+
+*R Package - Reporting:* `Rmarkdown`, `xaringan`, `xtable`, `knitr`, `ggfortify`, `FactoMineR`, `gganimate`
+
+---
+
+class: body-slide
+
+# Future research
+
+To confirm the validity of these series as economic indicators, further research needs to be conducted:
+
+* Whether the series predicts future consumer and business activity
+    - Does the MSI outperform the traditional survey based CCI
+    - Do they provide informational content above and beyond the current measures of confidence
+    - Extended timeframes
+* Refinement in the construction of the composite index 
+    - Use of topic models to control better for information that contributes to the index
+      - Could structural topic modeling help us get an idea of structural stability of the index
+    - Using the DTW measure alone. is there an optimal thereshold one could potentially use; i.e cumulative percentage explained we see in the PCA 
+
+---
+
+class: inverse, middle, center
+
+# Questions
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
