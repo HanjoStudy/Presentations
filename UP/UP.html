@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Predictive power of media based sentiment indices in helping     to forecast consumer confidence</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Nicolaas Johannes (Hanjo) Odendaal    Department of Economics/ BER     https://www.daeconomist.com" />
+    <script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.4/datatables.js"></script>
+    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+    <script src="libs/d3-4.10.2/d3.min.js"></script>
+    <link href="libs/collapsibleTree-0.1.6/collapsibleTree.css" rel="stylesheet" />
+    <script src="libs/collapsibleTree-binding-0.1.7/collapsibleTree.js"></script>
+    <link rel="stylesheet" href="theme.css" type="text/css" />
+    <link rel="stylesheet" href="theme_fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Predictive power of media based sentiment indices in helping <br /> <br /> to forecast consumer confidence
+### Nicolaas Johannes (Hanjo) Odendaal<br /> <br /> Department of Economics/ BER <br /> <br /> <a href="https://www.daeconomist.com" class="uri">https://www.daeconomist.com</a>
+
+---
+
+
+
+
+
+
+&lt;!-- layout: true --&gt;
+
+&lt;!-- &lt;div class="my-header"&gt;&lt;/div&gt; --&gt;
+
+&lt;!-- &lt;div class="my-footer"&gt;&lt;span&gt;Hanjo Odendaal     --&gt;
+&lt;!-- &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; --&gt;
+&lt;!-- &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; --&gt;
+&lt;!-- Department of economics&lt;/span&gt;&lt;/div&gt;  --&gt;
+
+---
+class: center, middle, transition
+
+# Research question 
+
+&gt; The contemporaneous correlation between sentiment and consumer spending does not refute traditional life-cycle or the permanent-income models of consumption. Nor does it necessarily make the job of forecasting changes in consumption any easier. From the point of an economic forecaster, the questions of interest are first, whether an index of consumer spending has any predictive power on its own for future changes in consumption spending, and secondly whether is contains information about future changes in consumer spending aside from the information contained in other variables - Carroll, Christopher D. (2003)
+
+???
+Data is being generated at higher volumes as well as in a host of different formats. Information is no longer the result of physical sampling or surveying, but rather a by-product of economic activity 
+
+In the same way, the field of economics is starting to embrace the data revolution by rethinking how this kind of data could be employed within standard economic analysis
+
+Opening up the possibility of using data to inform policy to a greater extent.
+
+More information is always better than less. When people know the reason things are happening, even if it's bad news, they can adjust their expectations and react accordingly
+---
+class: body-slide
+
+# Research question 
+
+&gt; The contemporaneous correlation between sentiment and consumer spending does not refute traditional life-cycle or the permanent-income models of consumption. Nor does it necessarily make the job of forecasting changes in consumption any easier. From the point of an economic forecaster, the questions of interest are first, &lt;font color="red"&gt;whether an index of consumer spending has any predictive power on its own for future changes in consumption spending&lt;/font&gt;, and secondly whether is contains information about future changes in consumer spending aside from the information contained in other variables - Carroll, Christopher D. (2003)
+
+--
+
+* We construct and analyse the predictive power of several news based sentiment indices in forecasting future personal consumption expenditure, as well as its sub-components: 
+
+    - Total, Durables, Sem-Durables, Non-Durables, Services
+
+---
+class: body-slide
+
+# Research question 
+
+&gt; The contemporaneous correlation between sentiment and consumer spending does not refute traditional life-cycle or the permanent-income models of consumption. Nor does it necessarily make the job of forecasting changes in consumption any easier. From the point of an economic forecaster, the questions of interest are first, whether an index of consumer spending has any predictive power on its own for future changes in consumption spending, and secondly &lt;font color="red"&gt;whether is contains information about future changes in consumer spending aside from the information contained in other variables &lt;/font&gt; - Carroll, Christopher D. (2003)
+
+--
+
+* The baseline model includes lags of the respective PCE measure; we also condition on disposable income
+
+    - Disposable income is a well known predictor of PCE measures
+
+* We also include the BER's survey based consumer confidence index (CCI) to act as a benchmark for consumer sentiment indices
+
+---
+
+class: body-slide
+
+# Where there is smoke there is fire...
+
+
+* P. J. Daas and M. Puts (2014) 
+    - Considers the construction of a Dutch *social media* sentiment index (SMI) derived from Facebook, Twitter and various other online data sources. The finding of the paper concluded that a strong association exists between consumer confidence and the sentiment displayed by public Facebook messages.
+
+* Brakel et al. (2017) 
+    - Investigates the Dutch SMI by using a multivariate structural time series approach to estimate whether the inclusion of social media in the production of Dutch administrative statistics improve their accuracy
+    - Their findings motivates that the SMI can be seen as a substitution for the more traditional survey approach
+
+???
+* Literature started appearing where the authors would use social media data in combination with computational linguistic methods known as sentiment analysis to construct psuedo consumer sentiment indices
+* These paper started questioning whether social media could act as a replacement for the traditional survey based techniques. 
+    - Survey based approaches suffer from high administration costs, possibility of non-respondents and cancellation of fieldwork due to lack of interest
+* But the social media based indices can be hard to construct and filter for the purpose of conducting consumer sentiment specifically
+
+---
+
+class: body-slide
+
+# Background literature on the subject
+
+* L.A Thorsrud (2016) 
+    - He shows show how unstructured textual information in a business newspaper can be decomposed into daily news topics and used to nowcast quarterly GDP growth.
+    - Proposed methodology performed at times up to 15 percent better, and is especially competitive around important business cycle turning points
+
+* A.H Shapiro (2018)
+    - Develop and assess new time series measures of economic sentiment based on computational text analysis of economic and financial newspaper articles from January 1980 to April 2015
+    - In most cases, the news sentiment measures outperform the University of Michigan and Conference board measures in predicting the federal funds rate, consumption, employment, inflation, industrial production, and the S&amp;P500
+    
+???
+* Here we can see the transition from consumer sentiment estimated, by analysing social media, to analysing economic variables by employing newspaper data
+
+---
+
+class: body-slide
+
+# How does media influence consumer expenditure
+
+* Information theory provides a view on the role of media and the effect that media play on influencing consumer sentiment about the economy (Doms, Mark E and Morin, Norman J, 2004)
+    - Sticky expectations and rational inattention emphasizes the **cost and constraints in obtaining data** and then, **reacting to that specific data**
+
+&lt;img src="img/media_consumer.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, middle, center
+
+# Consumer sentiment indices
+
+---
+
+class: body-slide
+
+# Traditional survey approaches to measure consumer confidence
+
+The consumer confidence questions consists out of the following:
+
+1. *How do you expect the **general economic position in South Africa to develop during the next 12 months**? Will it improve considerably, improve slightly, deteriorate slightly, deteriorate considerably or don’t know?*
+2. *How do you **expect the financial position in your household to develop in the next 12 months**? Will it improve considerably, improve slightly, deteriorate slightly, deteriorate considerably or don’t know?*
+3. *What is your opinion of the **suitability of the present time for the purchase of domestic appliances** such as furniture, washing machines, refrigerators etc. Do you think that for people in general it is the right time, neither a good nor a bad time or the wrong time?*
+
+Index constructed as a normalised sum of relative scores. 
+
+Percentage of respondents expecting an improvement / good time less the percentage expecting a deterioration / bad time
+
+---
+
+class: body-slide
+
+# Text-based construction of confidence indicators
+
+A dictionary "bag-of-words" approach to sentiment mining is widely used. We use two well known financial dictionaries
+
+<div id="htmlwidget-62c99ce480f68e6bff27" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-62c99ce480f68e6bff27">{"x":{"filter":"none","data":[["loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","loughran_mcdonald","henry","henry","henry","henry","henry","henry","henry","henry","henry","henry"],["unlicensed","counterclaimed","burdened","impairment","deviation","enthusiastically","effective","rebound","positively","strong","undecided","speculative","assumptions","might","variants","drop","weaken","penalties","risky","least","strong","accomplishes","accomplished","rewards","leading"],["negative","negative","negative","negative","negative","positive","positive","positive","positive","positive","uncertainty","uncertainty","uncertainty","uncertainty","uncertainty","negative","negative","negative","negative","negative","positive","positive","positive","positive","positive"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>dictionary<\/th>\n      <th>word<\/th>\n      <th>sentiment<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':value == 'negative' ? '#A64C62' : value == 'positive' ? '#4ca690' : ''});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+---
+
+class: body-slide
+
+# Data
+
+The newspaper data was provided by Sabinet. We focused on news articles from two well known financial publications: 
+
+* Business Day and Financial Mail
+* In total, ~200 000 articles were analysed
+
+&lt;img src="img/news_example.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+Although I do not fully go into the cleaning of the text, basic cleaning such as stopword removal and short articles removed
+
+---
+class: body-slide
+
+# Text-based construction of confidence indicators (Cont.)
+
+Doing a simple word count that consists out of the positive and negative words, we normalise the count so that they reflect the relative fraction of positive and negative words within an article:
+
+`$$Pos_{i, t, n^a} = \frac{PositiveWords}{PositiveWords + NegativeWords} \\
+Neg_{i, t, n^a} = \frac{NegativeWords}{PositiveWords + NegativeWords}$$`
+
+The polarity of the article is derived from the score. 
+
+`$$S_{i, t, n^a} = Pos_{i, t, n^a} - Neg_{i, t, n^a}$$`
+
+If the score of the article is greater than zero, then the overall sentiment for the article is deemed to be positive, the same can be said for a negative sentiment score.
+
+---
+
+class: body-slide
+
+# Text-based construction of confidence indicators (Cont.)
+
+The index is constructed as the *net balance of positive and negative articles* within a month. This method of constructing an index should be familiar, as it is the same method the University of Michigan uses to construct their well known consumer confidence index
+
+`$$\mathcal{I}_{t} = \frac{PositiveArticles - NegativeArticles}{PositiveArticles + NegativeArticles}$$`
+
+---
+
+class: body-slide
+
+# How well does the traditional CCI compare to PCE Total?
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-3-1.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: body-slide
+
+# Media based sentiment indices and economic indicators
+
+* **First** index is contructed from the Henry Dictionary
+
+..pull-left[
+  ![:scale 80%;](./img/animation.gif)
+]
+..pull-right[
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: body-slide
+
+# Media based sentiment indices and economic indicators
+
+* **Second** index is contructed from the Loughran Dictionary
+
+..pull-left[
+  ![:scale 80%;](./img/animation_loughran.gif)
+]
+..pull-right[
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+class: body-slide
+
+# Media based sentiment indices and economic indicators
+
+* **Last** index is composite index constructed using PCA and the two findancial dictionaries
+
+..pull-left[
+  ![:scale 80%;](./img/animation_PCA.gif)
+]
+..pull-right[
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: inverse, middle, center
+
+# Econometric evaluation
+
+???
+* All figures give an indication that there is some kind of co-movement between consumer sentiment, media sentiment and personal consumption expenditure indicators
+* We formally test the relationship within an econometric framework by estimating multiple Bayesian VARs at different forecast horizons and measuring their performance at each of the horison. We conduct the analysis at
+multiple forecasts horizons as to investigate the robustness of the results at different time intervals.
+
+---
+
+class: body-slide
+
+# Psuedo out of sample forecasting
+
+..pull-left[
+ * Quarterly data, 2006:Q1 to 2017:Q3 resulting in 48 out-of-sample quarters (or test samples)
+ * The forecasting model will produce forecasts for horizons: 1, 2, 4, 6 and 8 quarters ahead at each of the 48 testing samples for all models
+]
+..pull-right[
+ ![:scale 100%;](./img/expanding.png)
+]
+
+.footnote[
+Image source: http://eng.uber.com/wp-content/uploads/2018/09/image6-e1536165830511.png
+]
+
+---
+
+class: body-slide
+
+# Model overview
+
+<div id="htmlwidget-028f31015d642a63ca58" style="width:100%;height:500px;" class="collapsibleTree html-widget"></div>
+<script type="application/json" data-for="htmlwidget-028f31015d642a63ca58">{"x":{"data":{"name":"PCE Measures","children":[{"name":"Total","children":[{"name":"Baseline","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]}]},{"name":"Durables","children":[{"name":"Baseline","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]}]},{"name":"Non-Durables","children":[{"name":"Baseline","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]}]},{"name":"Semi-Durables","children":[{"name":"Baseline","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]}]},{"name":"Services","children":[{"name":"Baseline","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Henry","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Loughran","children":[{"name":"T + 1 , T + 2, ... , T+8"}]},{"name":"B + CCI + Composite","children":[{"name":"T + 1 , T + 2, ... , T+8"}]}]}]},"options":{"hierarchy":["Measure","Model","Title"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":10,"tooltip":false,"collapsed":true,"zoomable":true,"margin":{"top":20,"bottom":20,"left":85,"right":145},"fill":"lightsteelblue"}},"evals":[],"jsHooks":[]}</script>
+
+---
+class: body-slide
+
+# Bayesian VAR specification
+
+Following Carriero, Andrea *et al* (2015), we specify the Bayesian VAR with a Normal-inverted Wishart (N-IW) conjugate prior with `\(N\)`-dimensional variables in a vector `\(y_t = (y_{1t}, y_{2t}\cdots y_{Nt})'\)` with the VAR notation:
+
+`$$y_t = \Phi_c + \Phi_1y_{t-1}+ \Phi_2y_{t-2} + \ldots + \Phi_py_{t-p} + \epsilon_t ; \quad\epsilon\sim i.i.d.N(0, \Sigma)$$`
+
+which can be written in a compact way as
+
+`$$Y = X\Phi + E$$`
+
+The model uses a minnesota prior with covariance of parameters set to 0, specifying independent distributions for all coefficients.  In specifying the priors we follow Carriero, Clark, and Marcellino (2015)
+
+---
+
+class: body-slide
+
+# We evaluate the forecasts through scoring models
+
+In order to evaluate marginal density out-of-sample forecasts with a point realization, density-based error measures or scores are employed. 
+
+* The most popular scoring measures are the Log Score and Continuous Ranked Probability Score
+    - MSFE and MAFE
+
+..pull-left[
+ ![:scale 80%;](https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/ExpectedLog.png/420px-ExpectedLog.png)
+]
+
+..pull-right[
+ ![:scale 100%;](https://www.met-learning.eu/pluginfile.php/5277/mod_resource/content/6/www/resource/msg/verification/images/Graph_cdf_pdf.jpg)
+ 
+]
+
+???
+A probabilistic forecaster or algorithm will return a probability vector r with a probability for each of the i outcomes. One usage of a scoring function could be to give a reward if the ith event occurs. If a proper scoring rule is used, then the highest expected reward is obtained by reporting the true probability distribution. The use of a proper scoring rule encourages the forecaster to be honest to maximize the expected reward.
+CRPS, which is the total area between the cdf of the forecast and the cdf of the observation
+
+---
+
+class: inverse, middle, center
+
+# Results
+
+---
+
+class: body-slide
+
+# Short run dynamics
+
+Comparison of evaluation metrics of different models on short term forecasting horizons t+1 and t+2 using
+evaluation metrics CRPS, LS and RMSE
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-8-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+???
+Figure 6.1 display a stark difference in the forecasting performance for the forecast horison t + 1 and t + 2. In the short term the models can be seen to almost perform the same and only dispersing in forecast period t + 2. This can be misleading as the rate of change in performance measures in the short term changes quite drastically when comparing h + 1 with h + 2 forecast metrics. For PCE durables’ LS score the range of the forecast performance can vary as much as 0.3 between the periods. We also see a large range for RMSE evaluation measures in the short term forecasts
+---
+
+class: body-slide
+
+# Medium term dynamics
+
+Comparison of evaluation metrics of different models on medium term forecasting horizons t + 3 and t + 4
+using evaluation metrics CRPS, LS and RMSE
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-9-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: body-slide
+
+# Focussing on t + 1
+
+Viewing the performance within t+1 gives a much clearer idea on model performance
+
+&lt;img src="UP_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+class: body-slide
+
+# Financial Crisis period
+
+![:scale 70%;](./img/fin_crisis.png)
+
+---
+class: body-slide
+
+# Future research
+
+This research is still in a very rough form and although the results look promising:
+
+* Should I be conducting basic LM/Waldtests for the variables before the forecasting excercise?
+* Looking to implement Model Confidence Sets (MCS) to validate the results statistically
+* How to analyse the relationship between forecasting performance and article volume
+
+Perhiperal question: 
+
+* Could these results be improved if we implement topic modelling?
+
+???
+* Waldtest - pretty much granger causality test
+* MCS - I am kind of sure it relies on bootstrapping methods when a distribution is not available, so if the distribution is available, can I just use that?
+* Forecast performance and volume, important for stability, but some how do you balance volume, forecast performance and difficulty of forecasting the point?
+---
+
+class: inverse, middle, center
+
+# Questions
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
